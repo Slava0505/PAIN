@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">PAIN_1</string>
+    <string name="app_name">Прога-хуёга</string>
+    <string name="buttonForCamera">Camera</string>
 </resources>
