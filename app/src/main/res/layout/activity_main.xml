@@ -18,16 +18,72 @@
                 android:id="@+id/hscroll"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:scrollbars="none">
-            <com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx
-                    android:id="@+id/bottom_navigation_view"
-                    android:layout_width="1000dp"
-                    android:layout_height="50dp"
-                    android:background="@color/colorToolbar"
-                    app:itemIconTint="@color/colorIcones"
-                    android:elevation="4dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:menu="@menu/bottom_navigation_menu" />
+                android:scrollbars="none"
+
+                app:color="@color/colorToolbar">
+            <LinearLayout
+                    android:id="@+id/shapeLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+                <Button
+                        android:drawableLeft="@drawable/ic_camera"
+                        android:scaleType="fitCenter"
+                        android:id="@+id/camera_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/borderlessButtonStyle"
+                />
+                <Button
+                        android:drawableLeft="@drawable/ic_gallery"
+                        android:scaleType="fitCenter"
+                        android:id="@+id/gallery_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/borderlessButtonStyle"
+                />
+                <Button
+                        android:drawableLeft="@drawable/ic_filters"
+                        android:scaleType="fitCenter"
+                        android:id="@+id/filters_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/borderlessButtonStyle"
+                />
+                <Button
+                        android:drawableLeft="@drawable/ic_resize"
+                        android:scaleType="fitCenter"
+                        android:id="@+id/resize_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/borderlessButtonStyle"
+                />
+                <Button
+                        android:drawableLeft="@drawable/ic_rotation"
+                        android:scaleType="fitCenter"
+                        android:id="@+id/rotation_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/borderlessButtonStyle"
+                />
+                <Button
+                        android:drawableLeft="@drawable/ic_segmintation"
+                        android:scaleType="fitCenter"
+                        android:id="@+id/segmintation_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/borderlessButtonStyle"
+                />
+                <Button
+                        android:drawableLeft="@drawable/ic_line"
+                        android:scaleType="fitCenter"
+                        android:id="@+id/line_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/borderlessButtonStyle"
+                />
+            </LinearLayout>
         </HorizontalScrollView>
     </ScrollView>
 
