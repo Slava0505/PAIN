@@ -11,7 +11,11 @@ import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
 import android.webkit.PermissionRequest
 import android.widget.Toast
-
+//import com.karumi.dexter.Dexter
+//import com.karumi.dexter.MultiplePermissionsReport
+//import com.karumi.dexter.PermissionToken
+//import com.karumi.dexter.listener.PermissionRequest
+//import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -28,10 +32,10 @@ class MainActivity : AppCompatActivity() {
             pickPhotoFromGallery()
         }
 
-        //listen to take photo button click
-       takePhoto.setOnClickListener {
-            //askCameraPermission()
-        }
+//        //listen to take photo button click
+   //     takePhoto.setOnClickListener {
+    //        askCameraPermission()
+   //     }
 
     }
     //pick a photo from gallery
@@ -59,7 +63,47 @@ class MainActivity : AppCompatActivity() {
     }
 
     //ask for permission to take photo
-   
+   // fun askCameraPermission(){
+//        Dexter.withActivity(this)
+//            .withPermissions(
+//                Manifest.permission.CAMERA,
+  //              Manifest.permission.WRITE_EXTERNAL_STORAGE
+//            ).withListener(object : MultiplePermissionsListener {
+//                override fun onPermissionsChecked(report: MultiplePermissionsReport) {/* ... */
+//                    if(report.areAllPermissionsGranted()){
+///                        //once permissions are granted, launch the camera
+//                        launchCamera()
+//                    }else{
+//                        Toast.makeText(this@MainActivity, "All permissions need to be granted to take photo", Toast.LENGTH_LONG).show()
+//                    }
+//                }
+//
+//                override fun onPermissionRationaleShouldBeShown(permissions: List<PermissionRequest>, token: PermissionToken) {/* ... */
+//                    //show alert dialog with permission options
+//                    AlertDialog.Builder(this@MainActivity)
+//                        .setTitle(
+//                            "Permissions Error!")
+//                        .setMessage(
+//                            "Please allow permissions to take photo with camera")
+//                        .setNegativeButton(
+//                            android.R.string.cancel
+//                        ) { dialog, _ ->
+//                            dialog.dismiss()
+//                            token?.cancelPermissionRequest()
+//                        }
+//                        .setPositiveButton(android.R.string.ok
+//                        ) { dialog, _ ->
+//                            dialog.dismiss()
+//                            token?.continuePermissionRequest()
+//                        }
+//                        .setOnDismissListener {
+//                            token?.cancelPermissionRequest() }
+//                        .show()
+//                }
+//
+//            }).check()
+//
+//    }
 
     //override function that is called once the photo has been taken
     override fun onActivityResult(requestCode: Int, resultCode: Int,
