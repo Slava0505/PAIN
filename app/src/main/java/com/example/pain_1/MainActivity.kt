@@ -3,11 +3,13 @@ package codestart.info.kotlinphoto
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import com.example.pain_1.AStarActivity
+import com.example.pain_1.EditorActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -26,14 +28,19 @@ class MainActivity : AppCompatActivity() {
         }
 
         //listen to take photo button click
-                takePhoto.setOnClickListener {
+        takePhoto.setOnClickListener {
             askCameraPermission()
-       }
+        }
         //listen to A* button click
         aStar.setOnClickListener {
-            startActivity(Intent(this, AStarActivity::class.java))
+            val a= Intent(this, AStarActivity::class.java)
+            startActivity(a)
         }
-
+        //listen to Editor button click
+        editor.setOnClickListener {
+            val editor = Intent(this, EditorActivity::class.java)
+            startActivity(editor)
+        }
     }
     //pick a photo from gallery
     private fun pickPhotoFromGallery() {
@@ -53,10 +60,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
-
-
-
 
 
     //override function that is called once the photo has been taken
