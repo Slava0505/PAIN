@@ -7,6 +7,7 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
+import com.example.pain_1.AStarActivity
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -24,10 +25,15 @@ class MainActivity : AppCompatActivity() {
             pickPhotoFromGallery()
         }
 
-//        //listen to take photo button click
-//        takePhoto.setOnClickListener {
-//            askCameraPermission()
-//       }
+        //listen to take photo button click
+                takePhoto.setOnClickListener {
+            askCameraPermission()
+       }
+        //listen to A* button click
+        aStar.setOnClickListener {
+            val a= Intent(this, AStarActivity::class.java)
+            startActivity(a)
+        }
 
     }
     //pick a photo from gallery
@@ -37,6 +43,26 @@ class MainActivity : AppCompatActivity() {
 
         startActivityForResult(pickImageIntent, AppConstants.PICK_PHOTO_REQUEST)
     }
+
+
+
+
+    private fun askCameraPermission() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            takePictureIntent.resolveActivity(packageManager)?.also {
+                startActivityForResult(takePictureIntent,  AppConstants.TAKE_PHOTO_REQUEST)
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
 
     //launch the camera to take photo via intent
 //    private fun launchCamera() {
