@@ -8,8 +8,11 @@ import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
+import android.view.View
 import com.example.pain_1.AStarActivity
 import com.example.pain_1.EditorActivity
+import kotlinx.android.synthetic.main.activity_editor.imageEditorView
+import kotlinx.android.synthetic.main.activity_editor.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -74,11 +77,16 @@ class MainActivity : AppCompatActivity() {
             && requestCode == AppConstants.PICK_PHOTO_REQUEST){
             //photo from gallery
             fileUri = data?.data
+            startEditor(fileUri)
             imageView.setImageURI(fileUri)
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
     }
-
+    fun startEditor (fileUri: Uri?) {
+        val editor = Intent(this, EditorActivity::class.java)
+        editor.setData(fileUri)
+        startActivity(editor)
+    }
 
 }

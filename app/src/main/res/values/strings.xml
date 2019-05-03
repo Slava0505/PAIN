@@ -8,4 +8,5 @@
     <string name="aFinish">Mark Finish</string>
     <string name="aWall">Wall</string>
     <string name="aGo">DO</string>
+    <string name="todo">TODO</string>
 </resources>
