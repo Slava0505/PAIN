@@ -2,20 +2,11 @@ package codestart.info.kotlinphoto
 
 import android.Manifest
 import android.app.Activity
-import android.content.ContentValues
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
-import android.support.v7.app.AlertDialog
 import android.support.v7.app.AppCompatActivity
-import android.webkit.PermissionRequest
-import android.widget.Toast
-//import com.karumi.dexter.Dexter
-//import com.karumi.dexter.MultiplePermissionsReport
-//import com.karumi.dexter.PermissionToken
-//import com.karumi.dexter.listener.PermissionRequest
-//import com.karumi.dexter.listener.multi.MultiplePermissionsListener
 import kotlinx.android.synthetic.main.activity_main.*
 
 
@@ -27,15 +18,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         //listen to gallery button click
         gallery.setOnClickListener {
             pickPhotoFromGallery()
         }
 
 //        //listen to take photo button click
-   //     takePhoto.setOnClickListener {
-    //        askCameraPermission()
-   //     }
+//        takePhoto.setOnClickListener {
+//            askCameraPermission()
+//       }
 
     }
     //pick a photo from gallery
@@ -47,27 +39,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     //launch the camera to take photo via intent
-    private fun launchCamera() {
-        val values = ContentValues(1)
-        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpg")
-        fileUri = contentResolver
-            .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                values)
-        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        if(intent.resolveActivity(packageManager) != null) {
-            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
-            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
-                    or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-            startActivityForResult(intent, AppConstants.TAKE_PHOTO_REQUEST)
-        }
-    }
+//    private fun launchCamera() {
+//        val values = ContentValues(1)
+//        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpg")
+//        fileUri = contentResolver
+//            .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
+//                values)
+//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+//        if(intent.resolveActivity(packageManager) != null) {
+//            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
+//            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
+//                    or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
+//            startActivityForResult(intent, AppConstants.TAKE_PHOTO_REQUEST)
+//        }
+//    }
 
     //ask for permission to take photo
    // fun askCameraPermission(){
 //        Dexter.withActivity(this)
 //            .withPermissions(
 //                Manifest.permission.CAMERA,
-  //              Manifest.permission.WRITE_EXTERNAL_STORAGE
+//                Manifest.permission.WRITE_EXTERNAL_STORAGE
 //            ).withListener(object : MultiplePermissionsListener {
 //                override fun onPermissionsChecked(report: MultiplePermissionsReport) {/* ... */
 //                    if(report.areAllPermissionsGranted()){

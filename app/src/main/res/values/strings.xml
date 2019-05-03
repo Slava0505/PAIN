@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Прога-хуёга</string>
     <string name="buttonForCamera">Camera</string>
+    <string name="buttonForGallery">Gallery</string>
 </resources>
