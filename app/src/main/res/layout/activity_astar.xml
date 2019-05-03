@@ -10,9 +10,53 @@
     <ImageView
             android:src="@android:color/black"
             android:layout_width="350dp"
-            android:layout_height="600dp"
-            android:id="@+id/imageView2" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_height="400dp"
+            android:id="@+id/space" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintHorizontal_bias="0.488" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline3"/>
+    <Button
+            android:text="@string/aStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonStart" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" android:layout_marginBottom="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/button2"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintBottom_toTopOf="@+id/guideline4"/>
+    <Button
+            android:text="@string/aFinish"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button2" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" android:layout_marginBottom="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" app:layout_constraintBottom_toTopOf="@+id/guideline4"/>
+    <Button
+            android:text="@string/aWall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonWall" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="@+id/guideline3" android:layout_marginBottom="8dp"
+            app:layout_constraintStart_toEndOf="@+id/button2"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline4"/>
+    <android.support.constraint.Guideline
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="483dp" android:id="@+id/guideline3"/>
+    <android.support.constraint.Guideline
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="592dp" android:id="@+id/guideline4"/>
+    <Button
+            android:text="@string/aGo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonGoA" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="@+id/guideline4"/>
 </android.support.constraint.ConstraintLayout>

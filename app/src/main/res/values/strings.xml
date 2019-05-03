@@ -1,6 +1,10 @@
 <resources>
-    <string name="app_name">Edit</string>
+    <string name="app_name">EditByPAIN</string>
     <string name="buttonForCamera">Camera</string>
     <string name="buttonForGallery">Gallery</string>
     <string name="buttonForA">A*</string>
+    <string name="aStart">Mark Start</string>
+    <string name="aFinish">Mark Finish</string>
+    <string name="aWall">Wall</string>
+    <string name="aGo">DO</string>
 </resources>

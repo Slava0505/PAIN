@@ -31,8 +31,7 @@ class MainActivity : AppCompatActivity() {
        }
         //listen to A* button click
         aStar.setOnClickListener {
-            val a= Intent(this, AStarActivity::class.java)
-            startActivity(a)
+            startActivity(Intent(this, AStarActivity::class.java))
         }
 
     }
@@ -59,69 +58,6 @@ class MainActivity : AppCompatActivity() {
 
 
 
-
-
-
-
-
-    //launch the camera to take photo via intent
-//    private fun launchCamera() {
-//        val values = ContentValues(1)
-//        values.put(MediaStore.Images.Media.MIME_TYPE, "image/jpg")
-//        fileUri = contentResolver
-//            .insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-//                values)
-//        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-//        if(intent.resolveActivity(packageManager) != null) {
-//            intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri)
-//            intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION
-//                    or Intent.FLAG_GRANT_WRITE_URI_PERMISSION)
-//            startActivityForResult(intent, AppConstants.TAKE_PHOTO_REQUEST)
-//        }
-//    }
-
-    //ask for permission to take photo
-   // fun askCameraPermission(){
-//        Dexter.withActivity(this)
-//            .withPermissions(
-//                Manifest.permission.CAMERA,
-//                Manifest.permission.WRITE_EXTERNAL_STORAGE
-//            ).withListener(object : MultiplePermissionsListener {
-//                override fun onPermissionsChecked(report: MultiplePermissionsReport) {/* ... */
-//                    if(report.areAllPermissionsGranted()){
-///                        //once permissions are granted, launch the camera
-//                        launchCamera()
-//                    }else{
-//                        Toast.makeText(this@MainActivity, "All permissions need to be granted to take photo", Toast.LENGTH_LONG).show()
-//                    }
-//                }
-//
-//                override fun onPermissionRationaleShouldBeShown(permissions: List<PermissionRequest>, token: PermissionToken) {/* ... */
-//                    //show alert dialog with permission options
-//                    AlertDialog.Builder(this@MainActivity)
-//                        .setTitle(
-//                            "Permissions Error!")
-//                        .setMessage(
-//                            "Please allow permissions to take photo with camera")
-//                        .setNegativeButton(
-//                            android.R.string.cancel
-//                        ) { dialog, _ ->
-//                            dialog.dismiss()
-//                            token?.cancelPermissionRequest()
-//                        }
-//                        .setPositiveButton(android.R.string.ok
-//                        ) { dialog, _ ->
-//                            dialog.dismiss()
-//                            token?.continuePermissionRequest()
-//                        }
-//                        .setOnDismissListener {
-//                            token?.cancelPermissionRequest() }
-//                        .show()
-//                }
-//
-//            }).check()
-//
-//    }
 
     //override function that is called once the photo has been taken
     override fun onActivityResult(requestCode: Int, resultCode: Int,
