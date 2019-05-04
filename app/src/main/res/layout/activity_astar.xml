@@ -5,7 +5,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".AStarActivity" android:background="@color/colorGrayDark">
+        tools:context=".AStarActivity" android:background="@color/colorBackground">
 
     <ImageView
             android:src="@android:color/black"
@@ -15,7 +15,7 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintHorizontal_bias="0.488" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3"/>
+            app:layout_constraintBottom_toTopOf="@+id/guideline3" android:contentDescription="@string/todo"/>
     <Button
             android:text="@string/aStart"
             android:layout_width="wrap_content"
