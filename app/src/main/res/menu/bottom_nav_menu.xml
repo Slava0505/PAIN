@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+            android:id="@+id/filter_one"
+            android:icon="@android:drawable/editbox_dropdown_dark_frame"
+            android:title="@string/color_selection"/>
+
+    <item
+            android:id="@+id/Filter_neg"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/negative"/>
+
+    <item
+            android:id="@+id/color_rotate"
+            android:icon="@drawable/ic_dashboard_black_24dp"
+            android:title="@string/circlar"/>
+
+</menu>
