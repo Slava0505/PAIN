@@ -67,13 +67,14 @@ class MainActivity : AppCompatActivity() {
             && requestCode == AppConstants.TAKE_PHOTO_REQUEST) {
             //photo from camera
             //display the photo on the imageview
-            imageView.setImageURI(fileUri)
+            fileUri = data?.data
+            startEditor(fileUri)
+
         }else if(resultCode == Activity.RESULT_OK
             && requestCode == AppConstants.PICK_PHOTO_REQUEST){
             //photo from gallery
             fileUri = data?.data
             startEditor(fileUri)
-            imageView.setImageURI(fileUri)
         } else {
             super.onActivityResult(requestCode, resultCode, data)
         }
