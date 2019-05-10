@@ -39,11 +39,6 @@ class MainActivity : AppCompatActivity() {
             val a= Intent(this, AStarActivity::class.java)
             startActivity(a)
         }
-        //listen to Editor button click
-        editor.setOnClickListener {
-            val editor = Intent(this, EditorActivity::class.java)
-            startActivity(editor)
-        }
     }
     //pick a photo from gallery
     private fun pickPhotoFromGallery() {
