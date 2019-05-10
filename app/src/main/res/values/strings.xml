@@ -9,6 +9,19 @@
     <string name="aWall">Wall</string>
     <string name="aGo">DO</string>
     <string name="todo">TODO</string>
-    <string name="todo">TODO</string>
-    <string name="todo">TODO</string>
+    <string name="title_activity_filter">Filters</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="color_selection">Color selection</string>
+    <string name="negative">Negative</string>
+    <string name="circlar">Circlar</string>
+    <string name="accept">Accept</string>
+    <string name="cancel">Cancel</string>
+    <string name="red">Red</string>
+    <string name="green">Green</string>
+    <string name="blue">Blue</string>
+    <string name="_0">0</string>
+    <string name="imageveiw">ImageVeiw</string>
+    <string name="mask_for_selection">Mask for selection</string>
 </resources>

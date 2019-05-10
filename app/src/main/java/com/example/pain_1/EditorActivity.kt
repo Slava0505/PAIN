@@ -1,5 +1,6 @@
 package com.example.pain_1
 
+import android.content.Intent
 import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
@@ -19,6 +20,11 @@ class EditorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
         showStartPhoto()
+        filters_button.setOnClickListener {
+            val filt= Intent(this, FilterActivity::class.java)
+            filt.data= this.intent.data
+            startActivity(filt)
+            }
     }
 
 

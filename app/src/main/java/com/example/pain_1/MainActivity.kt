@@ -85,7 +85,7 @@ class MainActivity : AppCompatActivity() {
     }
     fun startEditor (fileUri: Uri?) {
         val editor = Intent(this, EditorActivity::class.java)
-        editor.setData(fileUri)
+        editor.data = fileUri
         startActivity(editor)
     }
 
