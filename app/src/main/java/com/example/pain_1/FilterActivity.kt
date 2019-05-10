@@ -131,7 +131,7 @@ class FilterActivity : AppCompatActivity() {
         val dir = File(filepath)
         if (!dir.exists())
             dir.mkdirs()
-        val file = File(dir, "PainImage" + getInstance() + ".png")
+        val file = File(dir, "PainImage" + "lol" + ".png")
         val fOut = FileOutputStream(file)
         orig.compress(Bitmap.CompressFormat.PNG, 85, fOut)
         fOut.flush()
