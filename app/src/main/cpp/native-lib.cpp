@@ -8,3 +8,4 @@ Java_com_example_pain_11_MainActivity_stringFromJNI(
     std::string hello = "Hello from C++";
     return env->NewStringUTF(hello.c_str());
 }
+//nothing actually new,just test
