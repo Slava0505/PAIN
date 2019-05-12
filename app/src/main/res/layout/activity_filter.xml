@@ -65,7 +65,8 @@
             android:id="@+id/redView"
             app:layout_constraintBottom_toTopOf="@+id/greenView" app:autoSizeMaxTextSize="16pt"
             app:autoSizeMinTextSize="14pt" android:textSize="24sp" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="8dp" />
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="8dp"
+            android:background="@color/colorBackground" android:textColor="@color/colorIcones"/>
     <TextView
             android:text="@string/green"
             android:layout_width="wrap_content"
@@ -73,7 +74,8 @@
             android:id="@+id/greenView"
             app:layout_constraintBottom_toTopOf="@+id/blueView" app:autoSizeMaxTextSize="16pt"
             app:autoSizeMinTextSize="14pt" android:textSize="24sp" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="8dp"/>
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="8dp"
+            android:background="@color/colorBackground" android:textColor="@color/colorIcones"/>
     <TextView
             android:text="@string/blue"
             android:layout_width="wrap_content"
@@ -81,38 +83,43 @@
             android:id="@+id/blueView"
             app:layout_constraintBottom_toTopOf="@+id/CS_button" app:autoSizeMaxTextSize="16pt"
             app:autoSizeMinTextSize="14pt" android:textSize="24sp" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="8dp"/>
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="8dp"
+            android:background="@color/colorBackground" android:textColor="@color/colorIcones"/>
     <EditText
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text_green" app:layout_constraintStart_toEndOf="@+id/greenView"
             android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/greenView" android:textSize="14sp" android:editable="true"
-            android:textIsSelectable="true" android:inputType="" android:importantForAutofill="no"/>
+            app:layout_constraintBottom_toBottomOf="@+id/greenView" android:textSize="24sp" android:editable="true"
+            android:textIsSelectable="true" android:inputType="" android:importantForAutofill="no"
+            android:background="@color/colorBackground" android:textColor="@color/colorIcones"/>
     <EditText
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text_red"
             app:layout_constraintStart_toStartOf="@+id/text_green"
-            android:textSize="14sp" android:editable="true"
+            android:textSize="24sp" android:editable="true"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/text_green"
-            android:textIsSelectable="true"/>
+            android:textIsSelectable="true" android:background="@color/colorBackground"
+            android:textColor="@color/colorIcones"/>
     <EditText
             android:text="0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/text_blue"
             app:layout_constraintTop_toBottomOf="@+id/text_green" app:layout_constraintStart_toStartOf="@+id/text_red"
-            android:textSize="14sp" android:editable="true" android:layout_marginTop="8dp"
-            android:textIsSelectable="true"/>
+            android:textSize="24sp" android:editable="true" android:layout_marginTop="8dp"
+            android:textIsSelectable="true" android:background="@color/colorBackground"
+            android:textColor="@color/colorIcones"/>
     <TextView
             android:text="@string/mask_for_selection"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/MaskText"
             app:layout_constraintBottom_toTopOf="@+id/redView" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" android:layout_marginBottom="24dp" android:textSize="18sp"/>
+            android:layout_marginStart="8dp" android:layout_marginBottom="24dp" android:textSize="18sp"
+            android:background="@color/colorBackground" android:textColor="@color/colorIcones"/>
 
 </android.support.constraint.ConstraintLayout>
