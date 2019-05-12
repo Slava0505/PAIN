@@ -14,6 +14,13 @@ class AStarActivity : AppCompatActivity() {
         setContentView(R.layout.activity_astar)
         var sw: Int
         var sh: Int
+        var mode=0
+        var Sset=false
+        var sx=-1
+        var sy=-1
+        var Fset=false
+        var fx=-1
+        var fy=-1
         clear()
         space.setImageBitmap(imag)
         buttonGenerate.setOnClickListener {
@@ -23,7 +30,55 @@ class AStarActivity : AppCompatActivity() {
             clear()
             space.setImageBitmap(imag)
         }
+        this.space.setOnTouchListener { v, MotionEvent ->
+            val x=MotionEvent.x-space.x
+            val y=MotionEvent.y-space.y
+            var red=0
+            var green=0
+            var blue=0
+            if (mode==1)
+            {
+                red=255
+                green=255
+                blue=255
+            }
+            if (mode==2)
+            {
+                if (Sset==true)
+                    imag.setPixel(sx,sy,Color.rgb(red,green, blue))
+                Sset=true
+                sx=x.toInt()
+                sy=y.toInt()
+                red=0
+                green=255
+                blue=0
 
+            }
+            if (mode==3)
+            {
+                if (Fset==true)
+                    imag.setPixel(fx,fy,Color.rgb(red,green, blue))
+                Fset=true
+                fx=x.toInt()
+                fy=y.toInt()
+                red=255
+                green=0
+                blue=0
+            }
+            imag.setPixel(x.toInt(),y.toInt(),Color.rgb(red,green, blue))
+            space.setImageBitmap(imag)
+            true
+        }
+
+        buttonStart.setOnClickListener {
+            mode=2
+        }
+        buttonWall.setOnClickListener {
+            mode=1
+        }
+        buttonFinish.setOnClickListener {
+            mode=3
+        }
     }
 
     fun clear()
