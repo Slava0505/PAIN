@@ -31,8 +31,8 @@ class AStarActivity : AppCompatActivity() {
             space.setImageBitmap(imag)
         }
         this.space.setOnTouchListener { v, MotionEvent ->
-            val x=MotionEvent.x-space.x
-            val y=MotionEvent.y-space.y
+            val x=(MotionEvent.x-space.x)*imag.width/space.width
+            val y=(MotionEvent.y-space.y)*imag.height/space.height
             var red=0
             var green=0
             var blue=0
