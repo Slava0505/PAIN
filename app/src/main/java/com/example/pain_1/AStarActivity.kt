@@ -12,6 +12,7 @@ class AStarActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_astar)
+        System.loadLibrary("native-lib")
         var sw: Int
         var sh: Int
         var mode=0
@@ -31,8 +32,8 @@ class AStarActivity : AppCompatActivity() {
             space.setImageBitmap(imag)
         }
         this.space.setOnTouchListener { v, MotionEvent ->
-            val x=(MotionEvent.x-space.x)*imag.width/space.width
-            val y=(MotionEvent.y-space.y)*imag.height/space.height
+            val x=(MotionEvent.x)*imag.width/space.width
+            val y=(MotionEvent.y)*imag.height/space.height
             var red=0
             var green=0
             var blue=0
@@ -44,7 +45,7 @@ class AStarActivity : AppCompatActivity() {
             }
             if (mode==2)
             {
-                if (Sset==true)
+                if (Sset)
                     imag.setPixel(sx,sy,Color.rgb(red,green, blue))
                 Sset=true
                 sx=x.toInt()
@@ -56,7 +57,7 @@ class AStarActivity : AppCompatActivity() {
             }
             if (mode==3)
             {
-                if (Fset==true)
+                if (Fset)
                     imag.setPixel(fx,fy,Color.rgb(red,green, blue))
                 Fset=true
                 fx=x.toInt()
@@ -79,7 +80,26 @@ class AStarActivity : AppCompatActivity() {
         buttonFinish.setOnClickListener {
             mode=3
         }
+
+        buttonGoA.setOnClickListener {
+            var arrTmp=Array(imag.width*imag.height){ i ->0}
+            var i=0
+            while (i<imag.width)
+            {
+                var t=0
+                while (t<imag.height)
+                {
+                    val pix=imag.getPixel(i,t)
+                    val matval=(Color.red(pix)+Color.blue(pix)+Color.green(pix))%2
+                    arrTmp[t+i*imag.height]=matval
+                    var set=0
+                    t++
+                }
+                i++
+            }
+        }
     }
+
 
     fun clear()
     {

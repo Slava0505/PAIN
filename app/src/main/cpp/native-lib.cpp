@@ -49,17 +49,17 @@ struct vert
 
 extern "C" JNIEXPORT jstring JNICALL
 Java_com_example_pain_11_AStarActivity_Astar(
-        int **im,
-        int w,
-        int h,
-        int bx,
-        int by,
-        int ex,
-        int ey,
-        int eu=0,
-        int dim=0,
-        JNIEnv* env,
-        jobject /* this */) {
+        JNIEnv* pEnv,
+        jint **im,
+        jint w,
+        jint h,
+        jint bx,
+        jint by,
+        jint ex,
+        jint ey,
+        jint eu=0,
+        jint dim=0
+                ) {
     long m,n;
     coop beg,end,tmp;
     n=w;
@@ -137,5 +137,5 @@ Java_com_example_pain_11_AStarActivity_Astar(
         double ln = a[end.x][end.y].sum + 1;
         res="Found a way with length of "+to_string(ceil(ln))+" transitions";
     }
-    return env->NewStringUTF(res.c_str());
+    return pEnv->NewStringUTF(res.c_str());
 }
