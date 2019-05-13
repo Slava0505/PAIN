@@ -9,13 +9,13 @@
         tools:context=".FilterActivity">
 
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" tools:src="@tools:sample/avatars"
+            android:layout_width="0dp"
+            android:layout_height="0dp" tools:src="@tools:sample/avatars"
             android:id="@+id/image_cur_view"
             app:layout_constraintTop_toTopOf="@+id/guideline5"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="16dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp" android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/Neg_button"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp" android:layout_marginTop="16dp"
+            android:layout_marginBottom="32dp" app:layout_constraintBottom_toTopOf="@+id/Neg_button"
             android:contentDescription="@string/imageveiw"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
@@ -87,31 +87,38 @@
             android:background="@color/colorBackground" android:textColor="@color/colorIcones"/>
     <EditText
             android:text="0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:layout_width="49dp"
+            android:layout_height="32dp"
             android:id="@+id/text_green" app:layout_constraintStart_toEndOf="@+id/greenView"
             android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/greenView" android:textSize="24sp" android:editable="true"
-            android:textIsSelectable="true" android:inputType="" android:importantForAutofill="no"
-            android:background="@color/colorBackground" android:textColor="@color/colorIcones"/>
+            app:layout_constraintBottom_toBottomOf="@+id/greenView" android:textSize="24sp"
+            android:importantForAutofill="no"
+            android:background="@color/colorBackground" android:textColor="@color/colorIcones"
+            android:textIsSelectable="true"/>
     <EditText
             android:text="0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:layout_width="50dp"
+            android:layout_height="35dp"
             android:id="@+id/text_red"
             app:layout_constraintStart_toStartOf="@+id/text_green"
-            android:textSize="24sp" android:editable="true"
+            android:textSize="24sp"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/text_green"
-            android:textIsSelectable="true" android:background="@color/colorBackground"
-            android:textColor="@color/colorIcones"/>
+            android:background="@color/colorBackground"
+            android:textColor="@color/colorIcones"
+            android:textIsSelectable="true"
+            android:importantForAutofill="no"/>
     <EditText
             android:text="0"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:inputType="textPersonName"
+            android:layout_width="49dp"
+            android:layout_height="30dp"
             android:id="@+id/text_blue"
             app:layout_constraintTop_toBottomOf="@+id/text_green" app:layout_constraintStart_toStartOf="@+id/text_red"
-            android:textSize="24sp" android:editable="true" android:layout_marginTop="8dp"
-            android:textIsSelectable="true" android:background="@color/colorBackground"
+            android:textSize="24sp"  android:layout_marginTop="8dp"
+            android:background="@color/colorBackground"
+            android:textIsSelectable="true"
             android:textColor="@color/colorIcones"/>
     <TextView
             android:text="@string/mask_for_selection"

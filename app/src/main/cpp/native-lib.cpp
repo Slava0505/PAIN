@@ -3,6 +3,7 @@
 #include <cmath>
 #include <map>
 #include <stack>
+#include <array>
 
 using namespace std;
 
@@ -48,11 +49,12 @@ struct vert
 };
 
 extern "C" JNIEXPORT jstring JNICALL
-Java_com_example_pain_11_AStarActivity_Astar(
-        JNIEnv* pEnv,
-        jint **im,
+Java_com_example_pain_11_AStarActivity_astar(
+        JNIEnv *env,
+        jobject instance,
         jint w,
         jint h,
+        jintArray im1,
         jint bx,
         jint by,
         jint ex,
@@ -62,6 +64,8 @@ Java_com_example_pain_11_AStarActivity_Astar(
                 ) {
     long m,n;
     coop beg,end,tmp;
+    jboolean u;
+    int *im=(env)->GetIntArrayElements(im1,&u);
     n=w;
     m=h;
     beg.y=by;
@@ -78,7 +82,7 @@ Java_com_example_pain_11_AStarActivity_Astar(
         while (k<m)
         {
             int tmp1;
-            tmp1=im[i][k];
+            tmp1=im[i*w+k];
             if (tmp1==1)
             {
                 a[i][k].sum=-1;
@@ -96,25 +100,29 @@ Java_com_example_pain_11_AStarActivity_Astar(
     a[beg.x][beg.y].par.x=-1;
     a[beg.x][beg.y].par.y=-1;
     a[beg.x][beg.y].wei=0;
+    a[beg.x][beg.y].col=2;
+    a[end.x][end.y].col=0;
     tmp.x=beg.x;
     tmp.y=beg.y;
     q.insert(make_pair(a[beg.x][beg.y].sum,tmp));
-    coop cur=(*q.begin()).second;
+    coop cur;
+    cur = (*q.begin()).second;
     while ((a[end.x][end.y].sum>a[cur.x][cur.y].sum)and(!q.empty()))
     {
         cur=(*q.begin()).second;
         q.erase(q.begin());
         int apx=-1;
-        while (apx<2) {
+        while ((apx<2)and((cur.x!=end.x)or(cur.y!=end.y))) {
             int apy=-1;
             while (apy<2)
             {
-                if (((dim==0)and!((apx!=0) and(apy!=0)))or((apx!=0) and(apy!=0))){
-                    if ((cur.x+apx<n)and(cur.x+apx>0)and(cur.y+apy<m)and(cur.y+apy>0)and(a[cur.x+apx][cur.y+apy].col==0)and((dist(cur.x+apx,cur.y+apy,end.x,end.y,eu)+a[cur.x][cur.y].wei+1)<a[cur.x][cur.y+apy].sum)) {
+               if (((dim!=0)or((dim==0)and((apx==0)or(apy==0))))and((apx!=0)or(apy!=0))){
+                    if (((cur.x + apx) < n) and ((cur.x + apx) >= 0) and ((cur.y + apy) < m) and ((cur.y + apy) >= 0) and
+                        (a[cur.x + apx][cur.y + apy].col == 0)){
                         a[cur.x+apx][cur.y+apy].upd(cur.x,cur.y,apx,apy,a[cur.x][cur.y].wei,eu,end.x,end.y);
                         tmp.x = cur.x + apx;
                         tmp.y = cur.y + apy;
-                        im[cur.x + apx][cur.y + apy]=2;
+                        im[(cur.x + apx)*w+cur.y + apy]=2;
                         q.insert(make_pair(a[cur.x + apx][cur.y + apy].sum, tmp));
                     }
                 }
@@ -130,12 +138,13 @@ Java_com_example_pain_11_AStarActivity_Astar(
     {
         res="No way found";
     } else {
-        while (cur.x != -1) {
+        while ((cur.x != beg.x)or(cur.y!=beg.y)) {
+            im[cur.x*w+cur.y] = 3;
             cur = a[cur.x][cur.y].par;
-            im[cur.x][cur.y] = 3;
         }
         double ln = a[end.x][end.y].sum + 1;
         res="Found a way with length of "+to_string(ceil(ln))+" transitions";
     }
-    return pEnv->NewStringUTF(res.c_str());
+    env->ReleaseIntArrayElements(im1,im,0);
+    return env->NewStringUTF(res.c_str());
 }

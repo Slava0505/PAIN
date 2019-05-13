@@ -4,36 +4,59 @@ import android.graphics.Bitmap
 import android.graphics.Color
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import codestart.info.kotlinphoto.R
 import kotlinx.android.synthetic.main.activity_astar.*
+import kotlin.math.floor
 
 class AStarActivity : AppCompatActivity() {
-    var imag = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
+    var imag = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_astar)
+        imag = Bitmap.createBitmap(100, 100, Bitmap.Config.ARGB_8888)
         System.loadLibrary("native-lib")
         var sw: Int
         var sh: Int
         var mode=0
         var Sset=false
-        var sx=-1
-        var sy=-1
+        var sx=0
+        var sy=0
         var Fset=false
-        var fx=-1
-        var fy=-1
+        var fx=99
+        var fy=99
         clear()
         space.setImageBitmap(imag)
         buttonGenerate.setOnClickListener {
             sw=normal(text_wight.text.toString().toInt())
             sh=normal(text_height.text.toString().toInt())
             imag = Bitmap.createBitmap(sw, sh, Bitmap.Config.ARGB_8888)
+            fx=sw-1
+            fy=sh-1
+            sx=0
+            sy=0
             clear()
             space.setImageBitmap(imag)
         }
         this.space.setOnTouchListener { v, MotionEvent ->
-            val x=(MotionEvent.x)*imag.width/space.width
-            val y=(MotionEvent.y)*imag.height/space.height
+            var x=(floor(MotionEvent.x)*imag.width/space.width).toInt()
+            var y=(floor(MotionEvent.y)*imag.height/space.height).toInt()
+            if (x<0)
+            {
+                x=0
+            }
+            if (y<0)
+            {
+                y=0
+            }
+            if (x>=imag.width)
+            {
+                x=imag.width-1
+            }
+            if (y>=imag.height)
+            {
+                y=imag.height-1
+            }
             var red=0
             var green=0
             var blue=0
@@ -48,8 +71,8 @@ class AStarActivity : AppCompatActivity() {
                 if (Sset)
                     imag.setPixel(sx,sy,Color.rgb(red,green, blue))
                 Sset=true
-                sx=x.toInt()
-                sy=y.toInt()
+                sx=x
+                sy=y
                 red=0
                 green=255
                 blue=0
@@ -60,13 +83,13 @@ class AStarActivity : AppCompatActivity() {
                 if (Fset)
                     imag.setPixel(fx,fy,Color.rgb(red,green, blue))
                 Fset=true
-                fx=x.toInt()
-                fy=y.toInt()
+                fx=x
+                fy=y
                 red=255
                 green=0
                 blue=0
             }
-            imag.setPixel(x.toInt(),y.toInt(),Color.rgb(red,green, blue))
+            imag.setPixel(x,y,Color.rgb(red,green, blue))
             space.setImageBitmap(imag)
             true
         }
@@ -82,7 +105,7 @@ class AStarActivity : AppCompatActivity() {
         }
 
         buttonGoA.setOnClickListener {
-            var arrTmp=Array(imag.width*imag.height){ i ->0}
+            var arrTmp=IntArray(imag.width*imag.height){i->0}
             var i=0
             while (i<imag.width)
             {
@@ -91,14 +114,41 @@ class AStarActivity : AppCompatActivity() {
                 {
                     val pix=imag.getPixel(i,t)
                     val matval=(Color.red(pix)+Color.blue(pix)+Color.green(pix))%2
-                    arrTmp[t+i*imag.height]=matval
-                    var set=0
+                    arrTmp[i*imag.height+t]=matval
+                    t++
+                }
+                i++
+            }
+            Toast.makeText(this,astar(imag.width,imag.height,arrTmp,sx,sy,fx,fy,2,1),Toast.LENGTH_SHORT).show()
+            i=0
+            while (i<imag.width)
+            {
+                var t=0
+                while (t<imag.height)
+                {
+                    if (arrTmp[i*imag.height+t]==1)
+                    {
+                        imag.setPixel(i,t,Color.rgb(255,255, 255))
+                    }
+                    if (arrTmp[i*imag.height+t]==2)
+                    {
+                        imag.setPixel(i,t,Color.rgb(255,255, 0))
+                    }
+                    if (arrTmp[i*imag.height+t]==3)
+                    {
+                        imag.setPixel(i,t,Color.rgb(0,255, 0))
+                    }
+                    if (arrTmp[i*imag.height+t]==0)
+                    {
+                        imag.setPixel(i,t,Color.rgb(0,0,0))
+                    }
                     t++
                 }
                 i++
             }
         }
     }
+
 
 
     fun clear()
@@ -118,6 +168,18 @@ class AStarActivity : AppCompatActivity() {
             i++
         }
     }
+
+    external fun astar(
+        w:Int,
+        h:Int,
+        im:IntArray,
+        bx:Int,
+        by:Int,
+        ex:Int,
+        ey:Int,
+        eu:Int,
+        dim:Int
+    ):String
 
     fun normal(i:Int):Int{
         if (i<2)

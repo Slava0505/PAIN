@@ -14,6 +14,7 @@ import android.os.Environment
 import java.io.File
 import java.io.FileOutputStream
 import java.util.Calendar.getInstance
+import kotlin.math.floor
 
 
 class FilterActivity : AppCompatActivity() {
@@ -58,9 +59,18 @@ class FilterActivity : AppCompatActivity() {
             {
                 val pxcolor=orig.getPixel(i,t)
                 val alpha= Color.alpha(pxcolor)
-                val red=Color.red(pxcolor)% normal(this.text_red.text.toString().toInt())
-                val green=Color.green(pxcolor)% normal(this.text_green.text.toString().toInt())
-                val blue=Color.blue(pxcolor)%normal( this.text_blue.text.toString().toInt())
+                var red=floor(Color.red(pxcolor)*255.0/normal(this.text_red.text.toString().toInt())).toInt()
+                var green=floor(Color.green(pxcolor)*255.0/normal(this.text_green.text.toString().toInt())).toInt()
+                var blue=floor(Color.blue(pxcolor)*255.0/normal(this.text_blue.text.toString().toInt())).toInt()
+                if (red>255){
+                    red=255
+                }
+                if (blue>255){
+                    blue=255
+                }
+                if (green>255){
+                    green=255
+                }
                 val newPixel = Color.argb(
                     alpha, red, green,blue
                 )
@@ -142,13 +152,12 @@ class FilterActivity : AppCompatActivity() {
     fun normal(rawread:Int):Int
     {
         var a=rawread
-        if (a<0){
-            a=0
-        }
+        if (a<1){
+            a=1
+        }/*
         if (a>255){
             a=255
-        }
-        a++
+        }*/
         return a
     }
 }
