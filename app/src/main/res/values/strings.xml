@@ -25,4 +25,13 @@
     <string name="imageveiw">ImageVeiw</string>
     <string name="mask_for_selection">Mask for selection</string>
     <string name="re_generate_field">Re generate field</string>
+    <string-array name="euristics">
+        <item>Euclidean</item>
+        <item>Manhattan</item>
+        <item>Hybrid</item>
+    </string-array>
+    <string-array name="ways_dims">
+        <item>4-Way</item>
+        <item>8-Way</item>
+    </string-array>
 </resources>

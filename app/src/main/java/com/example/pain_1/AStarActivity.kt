@@ -106,6 +106,8 @@ class AStarActivity : AppCompatActivity() {
 
         buttonGoA.setOnClickListener {
             var arrTmp=IntArray(imag.width*imag.height){i->0}
+            val eu=euristicchoice.selectedItemPosition
+            val dim=transitionchoice.selectedItemPosition
             var i=0
             while (i<imag.width)
             {
@@ -119,7 +121,7 @@ class AStarActivity : AppCompatActivity() {
                 }
                 i++
             }
-            Toast.makeText(this,astar(imag.width,imag.height,arrTmp,sx,sy,fx,fy,2,1),Toast.LENGTH_SHORT).show()
+            Toast.makeText(this,astar(imag.width,imag.height,arrTmp,sx,sy,fx,fy,eu,dim),Toast.LENGTH_SHORT).show()
             i=0
             while (i<imag.width)
             {
@@ -136,7 +138,7 @@ class AStarActivity : AppCompatActivity() {
                     }
                     if (arrTmp[i*imag.height+t]==3)
                     {
-                        imag.setPixel(i,t,Color.rgb(0,255, 0))
+                        imag.setPixel(i,t,Color.rgb(0,254, 0))
                     }
                     if (arrTmp[i*imag.height+t]==0)
                     {
