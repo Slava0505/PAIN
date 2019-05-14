@@ -82,7 +82,7 @@ Java_com_example_pain_11_AStarActivity_astar(
         while (k<m)
         {
             int tmp1;
-            tmp1=im[i*w+k];
+            tmp1=im[i*m+k];
             if (tmp1==1)
             {
                 a[i][k].sum=-1;
@@ -122,7 +122,7 @@ Java_com_example_pain_11_AStarActivity_astar(
                         a[cur.x+apx][cur.y+apy].upd(cur.x,cur.y,apx,apy,a[cur.x][cur.y].wei,eu,end.x,end.y);
                         tmp.x = cur.x + apx;
                         tmp.y = cur.y + apy;
-                        im[(cur.x + apx)*w+cur.y + apy]=2;
+                        im[(cur.x + apx)*m+cur.y + apy]=2;
                         q.insert(make_pair(a[cur.x + apx][cur.y + apy].sum, tmp));
                     }
                 }
@@ -139,7 +139,7 @@ Java_com_example_pain_11_AStarActivity_astar(
         res="No way found";
     } else {
         while ((cur.x != beg.x)or(cur.y!=beg.y)) {
-            im[cur.x*w+cur.y] = 3;
+            im[cur.x*m+cur.y] = 3;
             cur = a[cur.x][cur.y].par;
         }
         double ln = a[end.x][end.y].sum + 1;
