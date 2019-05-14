@@ -90,7 +90,7 @@ class AStarActivity : AppCompatActivity() {
                 blue=0
             }
             imag.setPixel(x,y,Color.rgb(red,green, blue))
-            space.setImageBitmap(imag)
+            space.setImageBitmap(Bitmap.createScaledBitmap(imag,1000,1000,false))
             true
         }
 
@@ -138,16 +138,26 @@ class AStarActivity : AppCompatActivity() {
                     }
                     if (arrTmp[i*imag.height+t]==3)
                     {
-                        imag.setPixel(i,t,Color.rgb(0,254, 0))
+                        imag.setPixel(i,t,Color.rgb(0,200, 0))
                     }
                     if (arrTmp[i*imag.height+t]==0)
                     {
                         imag.setPixel(i,t,Color.rgb(0,0,0))
                     }
+                    if ((i==fx)and(t==fy))
+                    {
+                        imag.setPixel(i,t,Color.rgb(255,0,0))
+                    }
+
+                    if ((i==sx)and(t==sy))
+                    {
+                        imag.setPixel(i,t,Color.rgb(0,255,0))
+                    }
                     t++
                 }
                 i++
             }
+            space.setImageBitmap(Bitmap.createScaledBitmap(imag,1000,1000,false))
         }
     }
 
