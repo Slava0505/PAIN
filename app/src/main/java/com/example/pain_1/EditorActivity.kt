@@ -25,6 +25,11 @@ class EditorActivity : AppCompatActivity() {
             filt.data= this.intent.data
             startActivity(filt)
             }
+        segmintation_button.setOnClickListener {
+            val bilin= Intent(this, BilinearActivity::class.java)
+            bilin.data= this.intent.data
+            startActivity(bilin)
+        }
     }
 
 
