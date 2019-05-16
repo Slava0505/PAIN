@@ -13,8 +13,6 @@ import android.net.Uri.*
 import android.os.Environment
 import java.io.File
 import java.io.FileOutputStream
-import java.util.Calendar.getInstance
-import kotlin.math.floor
 
 
 class FilterActivity : AppCompatActivity() {
@@ -23,14 +21,20 @@ class FilterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_filter)
         var cururi=intent.data
-        Neg_button.setOnClickListener {
-            imagenegfilter()
-        }
-        CS_button.setOnClickListener {
-            imagecsfilter()
-        }
-        Circlar_button.setOnClickListener {
-            imagecirclarfilter()
+        buttonapply.setOnClickListener {
+            val c=filterselect.selectedItemPosition
+            if (c==0)
+            {
+                imagecsfilter()
+            }
+            if (c==1)
+            {
+                imagenegfilter()
+            }
+            if (c==2)
+            {
+                imagecirclarfilter()
+            }
         }
         Filt_button_accept.setOnClickListener {
             cururi=imagesave()
@@ -59,9 +63,9 @@ class FilterActivity : AppCompatActivity() {
             {
                 val pxcolor=orig.getPixel(i,t)
                 val alpha= Color.alpha(pxcolor)
-                var red=floor(Color.red(pxcolor)*255.0/normal(this.text_red.text.toString().toInt())).toInt()
-                var green=floor(Color.green(pxcolor)*255.0/normal(this.text_green.text.toString().toInt())).toInt()
-                var blue=floor(Color.blue(pxcolor)*255.0/normal(this.text_blue.text.toString().toInt())).toInt()
+                var red= Color.red(pxcolor).div(256-normal(this.text_red.text.toString().toInt()))
+                var green= Color.green(pxcolor).div(256-normal(this.text_green.text.toString().toInt()))
+                var blue= Color.blue(pxcolor).div(256-normal(this.text_blue.text.toString().toInt()))
                 if (red>255){
                     red=255
                 }
@@ -154,10 +158,10 @@ class FilterActivity : AppCompatActivity() {
         var a=rawread
         if (a<1){
             a=1
-        }/*
+        }
         if (a>255){
             a=255
-        }*/
+        }
         return a
     }
 }
