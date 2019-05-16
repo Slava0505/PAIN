@@ -21,7 +21,9 @@
     <string name="red">Red</string>
     <string name="green">Green</string>
     <string name="blue">Blue</string>
-    <string name="_0">0</string>
+    <string name="number0">0</string>
+    <string name="right">Right</string>
+    <string name="left">Left</string>
     <string name="imageveiw">ImageVeiw</string>
     <string name="mask_for_selection">Mask for selection</string>
     <string name="re_generate_field">Re generate field</string>

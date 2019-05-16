@@ -86,7 +86,6 @@
             app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="8dp"
             android:background="@color/colorBackground" android:textColor="@color/colorIcones"/>
     <EditText
-            android:text="0"
             android:inputType="textPersonName"
             android:layout_width="49dp"
             android:layout_height="32dp"
@@ -95,9 +94,9 @@
             app:layout_constraintBottom_toBottomOf="@+id/greenView" android:textSize="24sp"
             android:importantForAutofill="no"
             android:background="@color/colorBackground" android:textColor="@color/colorIcones"
-            android:textIsSelectable="true"/>
+            android:textIsSelectable="true" android:text="@string/number0"/>
     <EditText
-            android:text="0"
+            android:text="@string/number0"
             android:inputType="textPersonName"
             android:layout_width="50dp"
             android:layout_height="35dp"
@@ -110,16 +109,15 @@
             android:textIsSelectable="true"
             android:importantForAutofill="no"/>
     <EditText
-            android:text="0"
             android:inputType="textPersonName"
             android:layout_width="49dp"
             android:layout_height="30dp"
             android:id="@+id/text_blue"
             app:layout_constraintTop_toBottomOf="@+id/text_green" app:layout_constraintStart_toStartOf="@+id/text_red"
-            android:textSize="24sp"  android:layout_marginTop="8dp"
+            android:textSize="24sp" android:layout_marginTop="8dp"
             android:background="@color/colorBackground"
             android:textIsSelectable="true"
-            android:textColor="@color/colorIcones"/>
+            android:textColor="@color/colorIcones" android:text="@string/number0"/>
     <TextView
             android:text="@string/mask_for_selection"
             android:layout_width="wrap_content"
