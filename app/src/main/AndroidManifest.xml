@@ -9,6 +9,11 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
+        <activity
+                android:name="com.example.pain_1.RetouchActivity"
+                android:label="@string/title_activity_retouch"
+                android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name="com.example.pain_1.BilinearActivity">
         </activity>
         <activity

@@ -46,4 +46,6 @@
         <item>Negative</item>
         <item>Circular</item>
     </string-array>
+    <string name="title_activity_retouch">RetouchActivity</string>
+    <string name="retouch">Retouch</string>
 </resources>
