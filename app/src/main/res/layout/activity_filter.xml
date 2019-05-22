@@ -124,5 +124,16 @@
             app:layout_constraintStart_toEndOf="@+id/text_green" android:layout_marginStart="32dp"
             android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/filterselect"
             android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="@+id/text_blue"/>
+    <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/processingBar"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+            app:layout_constraintStart_toEndOf="@+id/MaskText" android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp" app:layout_constraintTop_toBottomOf="@+id/image_cur_view"
+            app:layout_constraintBottom_toTopOf="@+id/filterselect" android:layout_marginBottom="16dp"
+            android:progressTint="@color/colorPrimary"
+    />
 
 </android.support.constraint.ConstraintLayout>
