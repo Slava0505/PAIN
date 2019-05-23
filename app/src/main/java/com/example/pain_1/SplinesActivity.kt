@@ -1,26 +1,29 @@
 package com.example.pain_1
 
+import android.content.ContextWrapper
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.text.method.TextKeyListener.clear
-import android.view.MotionEvent
-import android.view.View.X
-import android.widget.Toast
-import codestart.info.kotlinphoto.R
-import kotlinx.android.synthetic.main.activity_astar.*
-import kotlinx.android.synthetic.main.activity_filter.*
 import kotlinx.android.synthetic.main.activity_splines.*
 import kotlin.math.floor
+import java.io.FileOutputStream
+import java.io.IOException
+import android.os.Environment
+import java.io.File
+import java.io.OutputStream
+import java.util.*
+import kotlin.collections.ArrayList
+
 
 class SplinesActivity : AppCompatActivity() {
     val X = ArrayList<Int>()
     val Y = ArrayList<Int>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_splines)
+        setContentView(codestart.info.kotlinphoto.R.layout.activity_splines)
         val cururi=intent.data
         image1.setImageURI(cururi)
 
@@ -28,10 +31,10 @@ class SplinesActivity : AppCompatActivity() {
 
 
         this.image1.setOnTouchListener { v, motionEvent ->
-            val orig = (image1.drawable as BitmapDrawable).bitmap
-            val imag = Bitmap.createBitmap(orig.width, orig.height, Bitmap.Config.ARGB_8888)
-            var x = (floor(motionEvent.x) * imag.width / image1.width).toInt()
-            var y = (floor(motionEvent.y) * imag.height / image1.height).toInt()
+            val start_imag = (image1.drawable as BitmapDrawable).bitmap
+            val imag = start_imag.copy(start_imag.getConfig(), true)
+            var x=(floor(motionEvent.x)*imag.width/image1.width).toInt()
+            var y=(floor(motionEvent.y)*imag.height/image1.height).toInt()
             if (x < 0) {
                 x = 0
             }
@@ -51,11 +54,33 @@ class SplinesActivity : AppCompatActivity() {
             Y.add(y)
             println(X)
             imag.setPixel(x, y, Color.rgb(red, green, blue))
-            image1.setImageBitmap(Bitmap.createScaledBitmap(imag, 1000, 1000, true))
+
+
+
+            image1.setImageBitmap(imag)
             true
         }
+
+
     }
 
+    fun bitmapToFile(bitmap:Bitmap): Uri {
+        val wrapper = ContextWrapper(applicationContext)
+
+        val dir = Environment.getExternalStorageDirectory().absolutePath + "/PAINImages"
+        val file = File(dir, "${UUID.randomUUID()}.jpg")
+
+        try{
+            val stream: OutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream)
+            stream.flush()
+            stream.close()
+        }catch (e:IOException){
+            e.printStackTrace()
+        }
+
+        return Uri.parse(file.absolutePath)
+    }
 
     fun draw_splines()
     {

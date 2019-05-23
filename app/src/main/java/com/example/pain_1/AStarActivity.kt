@@ -89,6 +89,7 @@ class AStarActivity : AppCompatActivity() {
                 green=0
                 blue=0
             }
+            println(x)
             imag.setPixel(x,y,Color.rgb(red,green, blue))
             space.setImageBitmap(Bitmap.createScaledBitmap(imag,1000,1000,false))
             true
