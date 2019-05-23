@@ -14,6 +14,8 @@
                 android:label="@string/title_activity_splines"
                 android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity android:name="com.example.pain_1.BilinearActivity">
+        </activity>
         <activity
                 android:name="com.example.pain_1.FilterActivity"
                 android:label="@string/title_activity_filter">
