@@ -13,6 +13,7 @@ import android.graphics.Color
 import android.net.Uri
 import android.net.Uri.*
 import android.os.Environment
+import android.view.View
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -30,15 +31,24 @@ class FilterActivity : AppCompatActivity() {
             val c=filterselect.selectedItemPosition
             if (c==0)
             {
+                processingBar.visibility= View.VISIBLE
+                processingBar.progress=0
                 imagecsfilter()
+                processingBar.visibility= View.INVISIBLE
             }
             if (c==1)
             {
+                processingBar.visibility= View.VISIBLE
+                processingBar.progress=0
                 imagenegfilter()
+                processingBar.visibility= View.INVISIBLE
             }
-            if (c==2)
+                if (c==2)
             {
+                processingBar.visibility= View.VISIBLE
+                processingBar.progress=0
                 imagecirclarfilter()
+                processingBar.visibility= View.INVISIBLE
             }
         }
         Filt_button_accept.setOnClickListener {
@@ -59,6 +69,7 @@ class FilterActivity : AppCompatActivity() {
     fun imagecsfilter()
     {
         val orig = (image_cur_view.drawable as BitmapDrawable).bitmap
+        processingBar.max=orig.width*orig.height
         val temp = Bitmap.createBitmap(orig.width, orig.height, Bitmap.Config.ARGB_8888)
         var i=0
         while (i<orig.width)
@@ -84,6 +95,7 @@ class FilterActivity : AppCompatActivity() {
                     alpha, red, green,blue
                 )
                 temp.setPixel(i,t,newPixel)
+                processingBar.progress++
                 t++
             }
             i++
@@ -95,6 +107,7 @@ class FilterActivity : AppCompatActivity() {
     {
         val orig = (image_cur_view.drawable as BitmapDrawable).bitmap
         val temp = Bitmap.createBitmap(orig.width, orig.height, Bitmap.Config.ARGB_8888)
+        processingBar.max=orig.width*orig.height
         var i=0
         while (i<orig.width)
         {
@@ -110,6 +123,9 @@ class FilterActivity : AppCompatActivity() {
                     alpha, red, green,blue
                 )
                 temp.setPixel(i,t,newPixel)
+
+                processingBar.progress++
+
                 t++
             }
             i++
@@ -121,6 +137,7 @@ class FilterActivity : AppCompatActivity() {
     {
         val orig = (image_cur_view.drawable as BitmapDrawable).bitmap
         val temp = Bitmap.createBitmap(orig.width, orig.height, Bitmap.Config.ARGB_8888)
+        processingBar.max=orig.width*orig.height
         var i=0
         while (i<orig.width)
         {
@@ -136,6 +153,8 @@ class FilterActivity : AppCompatActivity() {
                     alpha, blue, red,green
                 )
                 temp.setPixel(i,t,newPixel)
+
+                processingBar.progress++
                 t++
             }
             i++
