@@ -13,6 +13,7 @@ import kotlin.math.floor
 import java.io.FileOutputStream
 import java.io.IOException
 import android.os.Environment
+import android.view.MotionEvent
 import java.io.File
 import java.io.OutputStream
 import java.util.*
@@ -25,45 +26,47 @@ class SplinesActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(codestart.info.kotlinphoto.R.layout.activity_splines)
-        val cururi=intent.data
+        val cururi = intent.data
         image1.setImageURI(cururi)
 
 
 
 
-        this.image1.setOnTouchListener { v, motionEvent ->
+        this.image1.setOnTouchListener() { v, motionEvent ->
             val start_imag = (image1.drawable as BitmapDrawable).bitmap
             val imag = start_imag.copy(start_imag.getConfig(), true)
-            var x=(floor(motionEvent.x)*imag.width/image1.width).toInt()
-            var y=(floor(motionEvent.y)*imag.height/image1.height).toInt()
-            if (x < 0) {
-                x = 0
+            if (motionEvent.getAction() == MotionEvent.ACTION_DOWN) {
+                var x = (floor(motionEvent.x) * imag.width / image1.width).toInt()
+                var y = (floor(motionEvent.y) * imag.height / image1.height).toInt()
+                if (x < 0) {
+                    x = 0
+                }
+                if (y < 0) {
+                    y = 0
+                }
+                if (x >= imag.width) {
+                    x = imag.width - 1
+                }
+                if (y >= imag.height) {
+                    y = imag.height - 1
+                }
+                var red = 255
+                var green = 255
+                var blue = 255
+                X.add(x)
+                Y.add(y)
+                println(X)
+                for (xi in x - imag.width / 100..x + imag.width / 100) {
+                    for (yi in y - imag.height / 100..y + imag.height / 100) {
+                        imag.setPixel(xi, yi, Color.rgb(red, green, blue))
+                    }
+                }
             }
-            if (y < 0) {
-                y = 0
-            }
-            if (x >= imag.width) {
-                x = imag.width - 1
-            }
-            if (y >= imag.height) {
-                y = imag.height - 1
-            }
-            var red = 255
-            var green = 255
-            var blue = 255
-            X.add(x)
-            Y.add(y)
-            println(X)
-            imag.setPixel(x, y, Color.rgb(red, green, blue))
-
-
-
             image1.setImageBitmap(imag)
             true
         }
-
-
     }
+
 
     fun bitmapToFile(bitmap:Bitmap): Uri {
         val wrapper = ContextWrapper(applicationContext)
@@ -87,7 +90,7 @@ class SplinesActivity : AppCompatActivity() {
     fun draw_splines()
     {
         for (i in 1..X.size/2){
-
+            
         }
     }
 }
