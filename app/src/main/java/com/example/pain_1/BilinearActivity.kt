@@ -119,12 +119,6 @@ class BilinearActivity : AppCompatActivity() {
             true}
             buttonDo.setOnClickListener {
                 val origbmp = (imageOrig.drawable as BitmapDrawable).bitmap
-                val canvasbmp = Bitmap.createBitmap(
-                    origbmp.width+1,
-                    origbmp.height+1,
-                    Bitmap.Config.ARGB_8888
-                )
-                clear(canvasbmp)
                 val a=dis(rpoint1x,rpoint2x,rpoint3x,opoint1y,opoint2y,opoint3y)/dis(opoint1x,opoint2x,opoint3x,opoint1y,opoint2y,opoint3y)
                 val b=dis(opoint1x,opoint2x,opoint3x,rpoint1x,rpoint2x,rpoint3x)/dis(opoint1x,opoint2x,opoint3x,opoint1y,opoint2y,opoint3y)
                 val c=rpoint1x-a*opoint1x-b*opoint1y
@@ -132,22 +126,34 @@ class BilinearActivity : AppCompatActivity() {
                 val e=dis(opoint1x,opoint2x,opoint3x,rpoint1y,rpoint2y,rpoint3y)/dis(opoint1x,opoint2x,opoint3x,opoint1y,opoint2y,opoint3y)
                 val f=rpoint1y-d*opoint1x-e*opoint1y
                 var i=0
-                var tmax=f
+                var tmaxy=f
+                var tmaxx=c
                 var tminy=f
                 var tminx=c
                 while (i<origbmp.width-1) {
                     var t = 0
                     while (t < origbmp.height - 1) {
-                        if ((i*d+t*e+f)>tmax)
-                            tmax=i*d+t*e+f
+                        if ((i*d+t*e+f)>tmaxy)
+                            tmaxy=i*d+t*e+f
                         if ((i*d+t*e+f)<tminy)
                             tminy=i*d+t*e+f
                         if ((i*a+t*b+c)<tminx)
                             tminx=i*a+t*b+c
+                        if ((i*a+t*b+c)>tmaxx)
+                            tmaxx=i*a+t*b+c
                         t++
                     }
                     i++
                 }
+                var ajx=floor((tmaxx-tminx)*origbmp.height/(tmaxy-tminy)).toInt()+1
+                if ((ajx/(origbmp.height+1))>3)
+                    ajx=origbmp.height+1
+                val canvasbmp = Bitmap.createBitmap(
+                    ajx,
+                    origbmp.height+1,
+                    Bitmap.Config.ARGB_8888
+                )
+                clear(canvasbmp)
                 i=0
                 while (i<origbmp.width-1)
                 {
@@ -155,8 +161,8 @@ class BilinearActivity : AppCompatActivity() {
                     while (t<origbmp.height-1)
                     {
                         val pxcolor=mid(origbmp.getPixel(i,t),origbmp.getPixel(i+1,t),origbmp.getPixel(i,t+1),origbmp.getPixel(i+1,t+1))
-                        var tx= (i*a+t*b+c-tminx)*origbmp.height/(tmax-tminy)
-                        var ty= (i*d+t*e+f-tminy)*origbmp.height/(tmax-tminy)
+                        var tx= (i*a+t*b+c-tminx)*origbmp.height/(tmaxy-tminy)
+                        var ty= (i*d+t*e+f-tminy)*origbmp.height/(tmaxy-tminy)
                         if (tx<0)
                         {
                             tx=0.0
