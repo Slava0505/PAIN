@@ -21,8 +21,8 @@ import kotlin.collections.ArrayList
 
 
 class SplinesActivity : AppCompatActivity() {
-    val X = ArrayList<Int>()
-    val Y = ArrayList<Int>()
+    val X = ArrayList<Float>()
+    val a = ArrayList<Float>()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(codestart.info.kotlinphoto.R.layout.activity_splines)
@@ -50,19 +50,34 @@ class SplinesActivity : AppCompatActivity() {
                 if (y >= imag.height) {
                     y = imag.height - 1
                 }
-                var red = 255
-                var green = 255
-                var blue = 255
-                X.add(x)
-                Y.add(y)
-                println(X)
+                val red = 255
+                val green = 255
+                val blue = 255
+                X.add(x.toFloat())
+                a.add(y.toFloat())
                 for (xi in x - imag.width / 100..x + imag.width / 100) {
                     for (yi in y - imag.height / 100..y + imag.height / 100) {
+                        if (xi < 0) {
+                            val xi = 0
+                        }
+                        if (yi < 0) {
+                            val yi = 0
+                        }
+                        if (xi >= imag.width) {
+                            val xi = imag.width - 1
+                        }
+                        if (yi >= imag.height) {
+                            val yi = imag.height - 1
+                        }
                         imag.setPixel(xi, yi, Color.rgb(red, green, blue))
                     }
                 }
             }
+
             image1.setImageBitmap(imag)
+
+            if (X.size==5) draw_splines(imag)
+
             true
         }
     }
@@ -87,10 +102,84 @@ class SplinesActivity : AppCompatActivity() {
     }
 
 
-    fun draw_splines()
+    fun draw_splines(imag: Bitmap)
     {
-        for (i in 1..X.size/2){
-            
+        val n = X.size-1
+        val b =  FloatArray(n){ 0.toFloat() }
+        val d = FloatArray(n){ 0.toFloat() }
+        val c = FloatArray(n+1){ 0.toFloat() }
+
+        val u = ArrayList<Float>()
+
+        val h = ArrayList<Float>()
+        val q = ArrayList<Float>()
+
+        val l = ArrayList<Float>()
+        val z = ArrayList<Float>()
+
+        for (i in 0..n-1){
+            h.add(X[i+1]-X[i])
         }
+        q.add(0.toFloat())
+        for (i in 1..n-1){
+            q.add(3*(a[i+1]-a[i])/h[i]-3*(a[i]-a[i-1])/h[i-1])
+        }
+
+        l.add(1.toFloat())
+        u.add(0.toFloat())
+        z.add(0.toFloat())
+        for (i in 1..n-1){
+            l.add(2*(X[i+1]-X[i-1])-h[i-1]*u[i-1])
+            u.add(h[i]/l[i])
+            z.add((q[i]-h[i-1]*z[i-1])/l[i])
+        }
+
+        l.add(1.toFloat())
+        z.add(0.toFloat())
+        c[n]=0.toFloat()
+        for (i in n-1 downTo 0){
+            c[i] = z[i] - u[i]*c[i+1]
+            b[i] = (a[i+1]-a[i])/h[i] - h[i]*(c[i+1]+2*c[i])/3
+            d[i] = (c[i+1]-c[i])/(3*h[i])
+        }
+        println(b)
+        val red = 255
+        val green = 255
+        val blue = 255
+        for (i in 1..n){
+            val xi = X[i]
+            for (x in X[i-1].toInt()..xi.toInt()){
+                val diff = (x-xi).toFloat()
+                var s = (a[i]+b[i-1]*diff+c[i-1]*diff*diff+d[i-1]*diff*diff*diff).toInt()
+                if (s < 0) {
+                    continue
+                }
+                if (s >= imag.height) {
+                    continue
+                }
+
+                for (xi in x - imag.width / 300..x + imag.width / 300) {
+                    for (yi in s - imag.height / 300..s + imag.height / 300) {
+                        if (xi < 0) {
+                            continue
+                        }
+                        if (yi < 0) {
+                            continue
+                        }
+                        if (xi >= imag.width) {
+                            continue
+                        }
+                        if (yi >= imag.height) {
+                            continue
+                        }
+                        imag.setPixel(xi, yi, Color.rgb(red, green, blue))
+                    }
+                }
+                imag.setPixel(x, s, Color.rgb(red, green, blue))
+
+            }
+        }
+
+        image1.setImageBitmap(imag)
     }
 }
