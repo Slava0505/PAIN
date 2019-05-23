@@ -49,8 +49,7 @@ class SplinesActivity : AppCompatActivity() {
             var blue = 255
             X.add(x)
             Y.add(y)
-            Thread.sleep(1_000)
-            println(motionEvent.getAction())
+            println(X)
             imag.setPixel(x, y, Color.rgb(red, green, blue))
             image1.setImageBitmap(Bitmap.createScaledBitmap(imag, 1000, 1000, true))
             true
