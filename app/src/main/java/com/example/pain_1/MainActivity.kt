@@ -4,6 +4,7 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.SharedPreferences
+import android.graphics.Bitmap
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
@@ -14,6 +15,9 @@ import com.example.pain_1.EditorActivity
 import kotlinx.android.synthetic.main.activity_editor.imageEditorView
 import kotlinx.android.synthetic.main.activity_editor.*
 import kotlinx.android.synthetic.main.activity_main.*
+import android.widget.Toast
+
+
 
 
 class MainActivity : AppCompatActivity() {
@@ -83,6 +87,19 @@ class MainActivity : AppCompatActivity() {
         val editor = Intent(this, EditorActivity::class.java)
         editor.data = fileUri
         startActivity(editor)
+    }
+
+    private var back_pressed: Long = 0
+
+    override fun onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis())
+            super.onBackPressed()
+        else
+            Toast.makeText(
+                baseContext, "Press once again to exit!",
+                Toast.LENGTH_SHORT
+            ).show()
+        back_pressed = System.currentTimeMillis()
     }
 
 }
