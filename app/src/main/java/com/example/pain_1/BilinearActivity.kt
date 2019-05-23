@@ -146,8 +146,10 @@ class BilinearActivity : AppCompatActivity() {
                     i++
                 }
                 var ajx=floor((tmaxx-tminx)*origbmp.height/(tmaxy-tminy)).toInt()+1
-                if ((ajx/(origbmp.height+1))>3)
-                    ajx=origbmp.height+1
+                if ((ajx/(origbmp.height+1))>3) {
+                    ajx = origbmp.width + 1
+                    Toast.makeText(this,"Ratio is NOT FINE at all.Don't use this coordinates ever again",Toast.LENGTH_SHORT).show()
+                }
                 val canvasbmp = Bitmap.createBitmap(
                     ajx,
                     origbmp.height+1,
