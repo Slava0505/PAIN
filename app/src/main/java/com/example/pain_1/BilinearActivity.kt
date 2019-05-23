@@ -5,9 +5,12 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import codestart.info.kotlinphoto.R
 import kotlinx.android.synthetic.main.activity_bilinear.*
+import java.lang.Math.abs
+import java.lang.Math.random
 import kotlin.math.floor
 
 class BilinearActivity : AppCompatActivity() {
@@ -115,12 +118,12 @@ class BilinearActivity : AppCompatActivity() {
             Toast.makeText(this,"You put point on "+x+" "+y,Toast.LENGTH_SHORT).show()
             true}
             buttonDo.setOnClickListener {
+                val origbmp = (imageOrig.drawable as BitmapDrawable).bitmap
                 val canvasbmp = Bitmap.createBitmap(
-                    imageOrig.width+1,
-                    imageOrig.height+1,
+                    origbmp.width+1,
+                    origbmp.height+1,
                     Bitmap.Config.ARGB_8888
                 )
-                val origbmp = (imageOrig.drawable as BitmapDrawable).bitmap
                 clear(canvasbmp)
                 val a=dis(rpoint1x,rpoint2x,rpoint3x,opoint1y,opoint2y,opoint3y)/dis(opoint1x,opoint2x,opoint3x,opoint1y,opoint2y,opoint3y)
                 val b=dis(opoint1x,opoint2x,opoint3x,rpoint1x,rpoint2x,rpoint3x)/dis(opoint1x,opoint2x,opoint3x,opoint1y,opoint2y,opoint3y)
@@ -129,14 +132,31 @@ class BilinearActivity : AppCompatActivity() {
                 val e=dis(opoint1x,opoint2x,opoint3x,rpoint1y,rpoint2y,rpoint3y)/dis(opoint1x,opoint2x,opoint3x,opoint1y,opoint2y,opoint3y)
                 val f=rpoint1y-d*opoint1x-e*opoint1y
                 var i=0
+                var tmax=f
+                var tminy=f
+                var tminx=c
+                while (i<origbmp.width-1) {
+                    var t = 0
+                    while (t < origbmp.height - 1) {
+                        if ((i*d+t*e+f)>tmax)
+                            tmax=i*d+t*e+f
+                        if ((i*d+t*e+f)<tminy)
+                            tminy=i*d+t*e+f
+                        if ((i*a+t*b+c)<tminx)
+                            tminx=i*a+t*b+c
+                        t++
+                    }
+                    i++
+                }
+                i=0
                 while (i<origbmp.width-1)
                 {
                     var t=0
                     while (t<origbmp.height-1)
                     {
-                        val pxcolor=(origbmp.getPixel(i,t)/*+origbmp.getPixel(i+1,t)+origbmp.getPixel(i,t+1)+origbmp.getPixel(i+1,t+1))/4*/)
-                        var tx= i*a+t*b+c
-                        var ty= i*d+t*e+f
+                        val pxcolor=mid(origbmp.getPixel(i,t),origbmp.getPixel(i+1,t),origbmp.getPixel(i,t+1),origbmp.getPixel(i+1,t+1))
+                        var tx= (i*a+t*b+c-tminx)*origbmp.height/(tmax-tminy)
+                        var ty= (i*d+t*e+f-tminy)*origbmp.height/(tmax-tminy)
                         if (tx<0)
                         {
                             tx=0.0
@@ -156,7 +176,8 @@ class BilinearActivity : AppCompatActivity() {
                         var ncolor=canvasbmp.getPixel(floor(tx).toInt(),floor(ty).toInt())
                         if ((Color.red(ncolor)!=0)or(Color.blue(ncolor)!=0)or(Color.green(ncolor)!=0))
                         {
-                            ncolor=(ncolor+pxcolor)/2
+                            if (random()<0.5)
+                            ncolor=pxcolor
 
                         }
                         else ncolor=pxcolor
@@ -191,7 +212,7 @@ class BilinearActivity : AppCompatActivity() {
             while (t<bmp.height)
             {
 
-                bmp.setPixel(i,t,Color.argb(255,0,0,0))
+                bmp.setPixel(i,t,Color.argb(0,0,0,0))
                 t++
             }
             i++
@@ -207,27 +228,30 @@ class BilinearActivity : AppCompatActivity() {
             var t=1
             while (t<bmp.height-1)
             {
-
+                var vls=ArrayList<Int>()
                 var col=bmp.getPixel(i,t)
-                if ((Color.red(col)==0)and(Color.blue(col)==0)and(Color.green(col)==0))
+                if (Color.alpha(col)==0)
                 {
-                    var tcol=0
                     var apx=-1
                     while (apx<2)
                     {
                         var apy=-1
                         while (apy<2)
                         {
-                            if ((apx!=apy)or(apy!=0))
+                            val tm=bmp.getPixel(i+apx,t+apy)
+                            if (Color.alpha(tm)!=0)
                             {
-                                tcol+=bmp.getPixel(i+apx,t+apy)
+                                vls.add(tm)
                             }
                             apy++
                         }
                         apx++
                     }
-                    col=tcol/8
-                    bmp.setPixel(i,t,col)
+                    vls.sort()
+                    if (vls.isNotEmpty()) {
+                        col = vls[vls.size / 2]
+                        bmp.setPixel(i, t, col)
+                    }
                 }
                 t++
             }
@@ -235,4 +259,19 @@ class BilinearActivity : AppCompatActivity() {
         }
     }
 
+    fun mid(
+        a1:Int,
+        a2:Int,
+        a3:Int,
+        a4:Int
+    ):Int{
+        var apr=(a1+a2+a3+a4)/4
+        return when {
+            (abs(a1-apr)<abs(a2-apr))and(abs(a1-apr)<abs(a3-apr))and(abs(a1-apr)<abs(a4-apr)) -> a1
+            (abs(a2-apr)<abs(a3-apr))and(abs(a2-apr)<abs(a4-apr)) -> a2
+            abs(a3-apr)<abs(a4-apr) -> a3
+            else -> a4
+        }
+    }
 }
+
