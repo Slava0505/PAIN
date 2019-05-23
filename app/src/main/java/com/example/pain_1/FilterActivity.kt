@@ -1,5 +1,7 @@
 package com.example.pain_1
 
+import android.content.Context
+import android.content.ContextWrapper
 import android.content.Intent
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
@@ -13,6 +15,9 @@ import android.net.Uri.*
 import android.os.Environment
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.util.*
 
 
 class FilterActivity : AppCompatActivity() {
@@ -37,7 +42,7 @@ class FilterActivity : AppCompatActivity() {
             }
         }
         Filt_button_accept.setOnClickListener {
-            cururi=imagesave()
+            cururi=bitmapToFile((image_cur_view.drawable as BitmapDrawable).bitmap)
             val accept= Intent(this, EditorActivity::class.java)
             accept.data=cururi
             startActivity(accept)
@@ -138,19 +143,22 @@ class FilterActivity : AppCompatActivity() {
         image_cur_view.setImageBitmap(temp)
     }
 
-    fun imagesave():Uri
-    {
-        val orig = (image_cur_view.drawable as BitmapDrawable).bitmap
-        val filepath = Environment.getExternalStorageDirectory().absolutePath + "/PAINImages"
-        val dir = File(filepath)
-        if (!dir.exists())
-            dir.mkdirs()
-        val file = File(dir, "PainImage" + "lol" + ".png")
-        val fOut = FileOutputStream(file)
-        orig.compress(Bitmap.CompressFormat.PNG, 85, fOut)
-        fOut.flush()
-        fOut.close()
-        return fromFile(file)
+    fun bitmapToFile(bitmap:Bitmap): Uri {
+        val wrapper = ContextWrapper(applicationContext)
+
+        var file = wrapper.getDir("Images",Context.MODE_PRIVATE)
+        file = File(file,"${UUID.randomUUID()}.jpg")
+
+        try{
+            val stream: OutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream)
+            stream.flush()
+            stream.close()
+        }catch (e: IOException){
+            e.printStackTrace()
+        }
+
+        return Uri.parse(file.absolutePath)
     }
 
     fun normal(rawread:Int):Int

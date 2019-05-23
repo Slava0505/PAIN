@@ -1,5 +1,6 @@
 package com.example.pain_1
 
+import android.content.Context
 import android.content.ContextWrapper
 import android.graphics.Bitmap
 import android.graphics.Color
@@ -67,20 +68,21 @@ class SplinesActivity : AppCompatActivity() {
     fun bitmapToFile(bitmap:Bitmap): Uri {
         val wrapper = ContextWrapper(applicationContext)
 
-        val dir = Environment.getExternalStorageDirectory().absolutePath + "/PAINImages"
-        val file = File(dir, "${UUID.randomUUID()}.jpg")
+        var file = wrapper.getDir("Images",Context.MODE_PRIVATE)
+        file = File(file,"${UUID.randomUUID()}.jpg")
 
         try{
             val stream: OutputStream = FileOutputStream(file)
             bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream)
             stream.flush()
             stream.close()
-        }catch (e:IOException){
+        }catch (e: IOException){
             e.printStackTrace()
         }
 
         return Uri.parse(file.absolutePath)
     }
+
 
     fun draw_splines()
     {
