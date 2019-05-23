@@ -46,4 +46,5 @@
         <item>Negative</item>
         <item>Circular</item>
     </string-array>
+    <string name="title_activity_splines">SplinesActivity</string>
 </resources>

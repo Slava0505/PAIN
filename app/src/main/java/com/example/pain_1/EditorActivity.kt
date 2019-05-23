@@ -30,6 +30,11 @@ class EditorActivity : AppCompatActivity() {
             bilin.data= this.intent.data
             startActivity(bilin)
         }
+        line_button.setOnClickListener {
+            val splines= Intent(this, SplinesActivity::class.java)
+            splines.data= this.intent.data
+            startActivity(splines)
+        }
     }
 
 
