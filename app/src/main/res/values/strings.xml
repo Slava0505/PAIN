@@ -27,6 +27,13 @@
     <string name="imageveiw">ImageVeiw</string>
     <string name="mask_for_selection">Mask for selection</string>
     <string name="re_generate_field">Re generate field</string>
+    <string name="apply_filter">Apply filter</string>
+    <string name="point_1">Point 1</string>
+    <string name="point_2">Point 2</string>
+    <string name="point_3">Point 3</string>
+    <string name="start">Do</string>
+    <string name="original_image">Original Image</string>
+    <string name="canvas">Canvas</string>
     <string-array name="euristics">
         <item>Euclidean</item>
         <item>Manhattan</item>
@@ -35,5 +42,10 @@
     <string-array name="ways_dims">
         <item>4-Way</item>
         <item>8-Way</item>
+    </string-array>
+    <string-array name="filters">
+        <item>Color selection</item>
+        <item>Negative</item>
+        <item>Circular</item>
     </string-array>
 </resources>

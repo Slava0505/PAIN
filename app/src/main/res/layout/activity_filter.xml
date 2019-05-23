@@ -15,8 +15,8 @@
             app:layout_constraintTop_toTopOf="@+id/guideline5"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="32dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp" android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp" app:layout_constraintBottom_toTopOf="@+id/Neg_button"
-            android:contentDescription="@string/imageveiw"/>
+            android:contentDescription="@string/imageveiw" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/MaskText"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -37,27 +37,6 @@
             app:layout_constraintBottom_toTopOf="@+id/guideline5" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="24dp"/>
-    <Button
-            android:text="@string/negative"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Neg_button" app:layout_constraintStart_toEndOf="@+id/CS_button"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toStartOf="@+id/Circlar_button"
-            android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-    <Button
-            android:text="@string/circlar"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/Circlar_button"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"/>
-    <Button
-            android:text="@string/color_selection"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/CS_button" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="8dp"/>
     <TextView
             android:text="@string/red"
             android:layout_width="wrap_content"
@@ -81,10 +60,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/blueView"
-            app:layout_constraintBottom_toTopOf="@+id/CS_button" app:autoSizeMaxTextSize="16pt"
+            app:autoSizeMaxTextSize="16pt"
             app:autoSizeMinTextSize="14pt" android:textSize="24sp" android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginBottom="8dp"
-            android:background="@color/colorBackground" android:textColor="@color/colorIcones"/>
+            app:layout_constraintStart_toStartOf="parent"
+            android:background="@color/colorBackground" android:textColor="@color/colorIcones"
+            android:layout_marginBottom="32dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:labelFor="@id/text_blue"/>
     <EditText
             android:inputType="textPersonName"
             android:layout_width="49dp"
@@ -126,5 +107,20 @@
             app:layout_constraintBottom_toTopOf="@+id/redView" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" android:layout_marginBottom="24dp" android:textSize="18sp"
             android:background="@color/colorBackground" android:textColor="@color/colorIcones"/>
+    <Spinner
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/filterselect" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
+            app:layout_constraintStart_toEndOf="@+id/text_red" android:layout_marginStart="24dp"
+            app:layout_constraintBottom_toBottomOf="@+id/text_red" app:layout_constraintTop_toTopOf="@+id/text_red"
+            android:entries="@array/filters"/>
+    <Button
+            android:text="@string/apply_filter"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/buttonapply" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="32dp"
+            app:layout_constraintStart_toEndOf="@+id/text_green" android:layout_marginStart="32dp"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/filterselect"
+            android:layout_marginBottom="16dp" app:layout_constraintBottom_toBottomOf="@+id/text_blue"/>
 
 </android.support.constraint.ConstraintLayout>
