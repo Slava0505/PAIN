@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.widget.Toast
 import com.example.pain_1.AStarActivity
 import com.example.pain_1.EditorActivity
 import kotlinx.android.synthetic.main.activity_editor.imageEditorView
@@ -84,5 +85,19 @@ class MainActivity : AppCompatActivity() {
         editor.data = fileUri
         startActivity(editor)
     }
+
+    private var back_pressed: Long = 0
+
+    override fun onBackPressed() {
+        if (back_pressed + 2000 > System.currentTimeMillis())
+            super.onBackPressed()
+        else
+            Toast.makeText(
+                baseContext, "Press once again to exit!",
+                Toast.LENGTH_SHORT
+            ).show()
+        back_pressed = System.currentTimeMillis()
+    }
+
 
 }

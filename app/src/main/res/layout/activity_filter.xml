@@ -83,8 +83,8 @@
             android:entries="@array/filters"
             app:layout_constraintTop_toTopOf="@+id/MaskText" app:layout_constraintStart_toEndOf="@+id/MaskText"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toBottomOf="@+id/MaskText" android:background="@color/colorBackground"
-            style="@style/Widget.AppCompat.Spinner"/>
+            app:layout_constraintBottom_toBottomOf="@+id/MaskText"
+            android:spinnerMode="dropdown"/>
     <Button
             android:text="@string/apply_filter"
             android:layout_width="215dp"
