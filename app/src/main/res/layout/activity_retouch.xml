@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".RetouchActivity">
+
+    <android.support.design.widget.AppBarLayout
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:theme="@style/AppTheme.AppBarOverlay"/>
+    <ImageView
+            android:layout_width="309dp"
+            android:layout_height="438dp" tools:src="@tools:sample/avatars[3]" android:id="@+id/retouchImage"
+            android:contentDescription="TODO"/>
+    <Button
+            android:text="@string/retouch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/buttonRetouch" app:layout_anchorGravity="end|bottom"
+            app:layout_anchor="@+id/retouchImage"/>
+    <EditText
+            android:layout_width="134dp"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:ems="10"
+            android:id="@+id/radiusRetouchValue" app:layout_anchorGravity="bottom|center" app:layout_anchor="@+id/retouchImage"
+            android:text="radius"/>
+
+</android.support.design.widget.CoordinatorLayout>
