@@ -95,7 +95,7 @@
                 />
 
                 <Button
-                        android:drawableStart="@drawable/ic_line"
+                        android:drawableStart="@drawable/ic_retouch"
                         android:scaleType="fitCenter"
                         android:id="@+id/retouch_button"
                         android:layout_width="wrap_content"
@@ -103,7 +103,7 @@
                         style="?android:attr/borderlessButtonStyle"
                 />
                 <Button
-                        android:drawableStart="@drawable/ic_line"
+                        android:drawableStart="@drawable/ic_masking"
                         android:scaleType="fitCenter"
                         android:id="@+id/masking_button"
                         android:layout_width="wrap_content"

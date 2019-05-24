@@ -128,14 +128,14 @@ class ResizeActivity : AppCompatActivity() {
             Toast.makeText(this,"Done",Toast.LENGTH_SHORT).show()
         }
 
-        buttonAccept.setOnClickListener {
+        button_accept.setOnClickListener {
             cururi=bitmapToFile((imageForResize.drawable as BitmapDrawable).bitmap)
             val accept= Intent(this, EditorActivity::class.java)
             accept.data=cururi
             startActivity(accept)
         }
 
-        buttonCancel.setOnClickListener {
+        button_cancel.setOnClickListener {
             val cancel= Intent(this, EditorActivity::class.java)
             cancel.data=cururi
             startActivity(cancel)
