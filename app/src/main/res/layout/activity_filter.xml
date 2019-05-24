@@ -6,7 +6,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".FilterActivity">
+        tools:context=".FilterActivity" android:background="@color/colorBackground">
 
     <ImageView
             android:layout_width="0dp"
@@ -97,7 +97,7 @@
             android:layout_height="30dp"
             android:id="@+id/text_blue"
             app:layout_constraintTop_toBottomOf="@+id/text_green" app:layout_constraintStart_toStartOf="@+id/text_red"
-            android:textSize="24sp"  android:layout_marginTop="8dp"
+            android:textSize="24sp" android:layout_marginTop="8dp"
             android:background="@color/colorBackground"
             android:textIsSelectable="true"
             android:textColor="@color/colorIcones"/>
