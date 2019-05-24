@@ -2,6 +2,7 @@ package com.example.pain_1
 
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.graphics.Bitmap
@@ -9,8 +10,6 @@ import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import codestart.info.kotlinphoto.R.layout.*
-import kotlinx.android.synthetic.main.activity_filter.*
-import kotlinx.android.synthetic.main.activity_retouch.*
 import kotlinx.android.synthetic.main.activity_unsarp_masking.*
 import java.io.File
 import java.io.FileOutputStream
@@ -29,6 +28,17 @@ class MaskingActivity : AppCompatActivity() {
         setContentView(activity_unsarp_masking)
         var cururi = intent.data
         unsharpMaskingImage.setImageURI(cururi)
+        button_accept.setOnClickListener {
+            cururi=bitmapToFile((unsharpMaskingImage.drawable as BitmapDrawable).bitmap)
+            val accept= Intent(this, EditorActivity::class.java)
+            accept.data=cururi
+            startActivity(accept)
+        }
+        button_cancel.setOnClickListener {
+            val cancel= Intent(this, EditorActivity::class.java)
+            cancel.data=cururi
+            startActivity(cancel)
+        }
     }
     override fun onStart(){
         super.onStart()
@@ -40,13 +50,7 @@ class MaskingActivity : AppCompatActivity() {
         var radius: Int = radiusText.text.toString().toInt()
 
 
-        unsharpMaskingCancel.setOnClickListener {
 
-            radius = 1
-            amountUM = 0.0
-            trash = 0.0
-
-        }
         doUM.setOnClickListener {
             tempImage = gaussianBlur(tempImage!!, radius, trash, amountUM)
             unsharpMaskingImage.setImageBitmap(tempImage)

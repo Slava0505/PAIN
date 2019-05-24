@@ -15,22 +15,22 @@
             android:layout_marginEnd="8dp"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/unsharpMaskingCancel" android:id="@+id/unsharpMaskingImage"/>
+            app:layout_constraintBottom_toTopOf="@+id/button_cancel" android:id="@+id/unsharpMaskingImage"/>
     <Button
-            android:text="Apply"
+            android:text="@string/accept"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/unsharpMaskingApply"
+            android:id="@+id/button_accept"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="40dp"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/doUM"/>
     <Button
-            android:text="Cancel"
+            android:text="@string/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/unsharpMaskingCancel" app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/button_cancel" app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="40dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/unsharpMaskingApply"/>
+            app:layout_constraintBottom_toTopOf="@+id/button_accept"/>
 
     <TextView
             android:text="@string/radius"

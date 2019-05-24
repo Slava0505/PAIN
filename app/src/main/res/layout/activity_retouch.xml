@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<android.support.constraint.ConstraintLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -7,26 +7,47 @@
         android:layout_height="match_parent"
         tools:context=".RetouchActivity">
 
-    <android.support.design.widget.AppBarLayout
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:theme="@style/AppTheme.AppBarOverlay"/>
+
     <ImageView
-            android:layout_width="309dp"
-            android:layout_height="438dp" tools:src="@tools:sample/avatars[3]" android:id="@+id/retouchImage"
-            android:contentDescription="TODO"/>
+            android:layout_width="328dp"
+            android:layout_height="476dp" tools:src="@tools:sample/avatars[3]" android:id="@+id/retouchImage"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="41dp"
+            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="41dp"
+            app:layout_constraintHorizontal_bias="0.0"/>
     <Button
-            android:text="@string/retouch"
+            android:text="@string/cancel"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" android:id="@+id/buttonRetouch" app:layout_anchorGravity="end|bottom"
-            app:layout_anchor="@+id/retouchImage"/>
+            android:layout_height="wrap_content" android:id="@+id/button_cancel"
+            app:layout_anchor="@+id/retouchImage"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="40dp" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="40dp"/>
     <EditText
             android:layout_width="134dp"
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/radiusRetouchValue" app:layout_anchorGravity="bottom|center"
+            android:id="@+id/radiusRetouchValue"
             app:layout_anchor="@+id/retouchImage"
-            android:text="50"/>
+            android:text="50" android:layout_marginEnd="50dp"
+            app:layout_constraintEnd_toStartOf="@+id/buttonRetouch"
+            app:layout_constraintBottom_toTopOf="@+id/button_cancel" android:layout_marginBottom="20dp"/>
+    <Button
+            android:text="@string/accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_accept"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="40dp" app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="40dp"/>
+    <Button
+            android:text="@string/retouch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonRetouch" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="80dp" android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@+id/button_accept"/>
 
-</android.support.design.widget.CoordinatorLayout>
+</android.support.constraint.ConstraintLayout>

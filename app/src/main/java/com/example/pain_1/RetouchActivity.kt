@@ -7,6 +7,7 @@ import android.media.Image
 import android.graphics.Color
 import android.content.Context
 import android.content.ContextWrapper
+import android.content.Intent
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Environment
@@ -20,7 +21,10 @@ import kotlinx.android.synthetic.main.activity_filter.*
 
 
 import kotlinx.android.synthetic.main.activity_retouch.*
+import kotlinx.android.synthetic.main.activity_retouch.button_accept
+import kotlinx.android.synthetic.main.activity_retouch.button_cancel
 import kotlinx.android.synthetic.main.activity_retouch.view.*
+import kotlinx.android.synthetic.main.activity_unsarp_masking.*
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
@@ -37,6 +41,17 @@ class RetouchActivity : AppCompatActivity() {
         var cururi = intent.data
         retouchImage.setImageURI(cururi)
         fRetouch()
+        button_accept.setOnClickListener {
+            cururi=bitmapToFile((retouchImage.drawable as BitmapDrawable).bitmap)
+            val accept= Intent(this, EditorActivity::class.java)
+            accept.data=cururi
+            startActivity(accept)
+        }
+        button_cancel.setOnClickListener {
+            val cancel= Intent(this, EditorActivity::class.java)
+            cancel.data=cururi
+            startActivity(cancel)
+        }
     }
 
 
@@ -129,4 +144,22 @@ class RetouchActivity : AppCompatActivity() {
                 return Uri.parse(file.absolutePath)
             }
 
-})}}
+
+})}
+    fun bitmapToFile(bitmap:Bitmap): Uri {
+        val wrapper = ContextWrapper(applicationContext)
+
+        var file = wrapper.getDir("Images", Context.MODE_PRIVATE)
+        file = File(file,"${UUID.randomUUID()}.jpg")
+
+        try{
+            val stream: OutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream)
+            stream.flush()
+            stream.close()
+        }catch (e: IOException){
+            e.printStackTrace()
+        }
+
+        return Uri.parse(file.absolutePath)
+    }}
