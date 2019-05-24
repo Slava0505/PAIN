@@ -35,6 +35,16 @@ class EditorActivity : AppCompatActivity() {
             splines.data= this.intent.data
             startActivity(splines)
         }
+        rotation_button.setOnClickListener {
+            val rot= Intent(this, RotateActivity::class.java)
+            rot.data= this.intent.data
+            startActivity(rot)
+        }
+        resize_button.setOnClickListener {
+            val resiz= Intent(this, ResizeActivity::class.java)
+            resiz.data= this.intent.data
+            startActivity(resiz)
+        }
     }
 
 

@@ -49,4 +49,6 @@
         <item>Circular</item>
     </string-array>
     <string name="title_activity_splines">SplinesActivity</string>
+    <string name="degrees">Degrees</string>
+    <string name="apply">Apply</string>
 </resources>

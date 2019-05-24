@@ -10,31 +10,13 @@
     <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" tools:src="@mipmap/ic_launcher"
-            android:id="@+id/imageForRotat" android:layout_marginTop="8dp"
+            android:id="@+id/imageForRotate" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp" android:layout_marginBottom="24dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline6" app:layout_constraintHorizontal_bias="0.528"
             app:layout_constraintVertical_bias="0.502"/>
-    <Button
-            android:text="@string/left"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rotateLeft" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="@+id/guideline6" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/guideline7" android:layout_marginEnd="8dp"/>
-    <Button
-            android:text="@string/right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/rotateRight" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="@+id/guideline6" app:layout_constraintStart_toStartOf="@+id/guideline7"
-            android:layout_marginStart="8dp"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -47,7 +29,41 @@
             android:text="@string/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonCancelTurn" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:id="@+id/buttonCancel"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7" android:layout_marginEnd="8dp"/>
+    <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="numberSigned|number|numberDecimal"
+            android:ems="10"
+            android:id="@+id/degreesBox"
+            app:layout_constraintEnd_toStartOf="@+id/guideline7" android:layout_marginEnd="8dp"
+            app:layout_constraintStart_toStartOf="@+id/guideline7"
+            android:layout_marginStart="8dp"
+            android:autofillHints="" android:text="@string/number0" android:textSize="24sp"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/buttonStart"/>
+    <TextView
+            android:text="@string/degrees"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/angleBox" android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/degreesBox" app:layout_constraintStart_toStartOf="@+id/degreesBox"
+            android:textSize="24sp" android:textColor="@color/colorIcones"/>
+    <Button
+            android:text="@string/accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonAccept" app:layout_constraintStart_toStartOf="@+id/guideline7"
+            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp" app:layout_constraintBottom_toBottomOf="parent"/>
+    <Button
+            android:text="@string/apply"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/buttonStart" app:layout_constraintEnd_toStartOf="@+id/buttonAccept"
+            android:layout_marginEnd="8dp" app:layout_constraintStart_toEndOf="@+id/buttonCancel"
+            android:layout_marginStart="8dp" android:layout_marginBottom="24dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonAccept"/>
 </android.support.constraint.ConstraintLayout>
