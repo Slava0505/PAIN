@@ -6,6 +6,7 @@ import android.view.MotionEvent
 import android.media.Image
 import android.graphics.Color
 import android.content.Context
+import android.content.ContextWrapper
 import android.graphics.drawable.BitmapDrawable
 import android.net.Uri
 import android.os.Environment
@@ -22,6 +23,9 @@ import kotlinx.android.synthetic.main.activity_retouch.*
 import kotlinx.android.synthetic.main.activity_retouch.view.*
 import java.io.File
 import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.util.*
 
 class RetouchActivity : AppCompatActivity() {
 
@@ -107,19 +111,22 @@ class RetouchActivity : AppCompatActivity() {
                 }
                 return true
     }
-            fun imagesave(): Uri
-            {
-                val orig = (image_cur_view.drawable as BitmapDrawable).bitmap
-                val filepath = Environment.getExternalStorageDirectory().absolutePath + "/PAINImages"
-                val dir = File(filepath)
-                if (!dir.exists())
-                    dir.mkdirs()
-                val file = File(dir, "PainImage" + "lol" + ".png")
-                val fOut = FileOutputStream(file)
-                orig.compress(Bitmap.CompressFormat.PNG, 85, fOut)
-                fOut.flush()
-                fOut.close()
-                return Uri.fromFile(file)
+            fun bitmapToFile(bitmap:Bitmap): Uri {
+                val wrapper = ContextWrapper(applicationContext)
+
+                var file = wrapper.getDir("Images", Context.MODE_PRIVATE)
+                file = File(file,"${UUID.randomUUID()}.jpg")
+
+                try{
+                    val stream: OutputStream = FileOutputStream(file)
+                    bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream)
+                    stream.flush()
+                    stream.close()
+                }catch (e: IOException){
+                    e.printStackTrace()
+                }
+
+                return Uri.parse(file.absolutePath)
             }
 
 })}}

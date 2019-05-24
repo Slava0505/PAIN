@@ -1,16 +1,25 @@
 package com.example.pain_1
 
+import android.content.Context
+import android.content.ContextWrapper
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import codestart.info.kotlinphoto.R.layout.*
 import kotlinx.android.synthetic.main.activity_filter.*
+import kotlinx.android.synthetic.main.activity_retouch.*
 import kotlinx.android.synthetic.main.activity_unsarp_masking.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.util.*
 
 
-class unsarpMasking : AppCompatActivity() {
+class MaskingActivity : AppCompatActivity() {
 
     var tempImage : Bitmap? = null
     val pi = 3.1415926535
@@ -18,15 +27,13 @@ class unsarpMasking : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(activity_unsarp_masking)
+        var cururi = intent.data
+        unsharpMaskingImage.setImageURI(cururi)
     }
     override fun onStart(){
         super.onStart()
-        val originalImage = (image_cur_view.drawable as BitmapDrawable).bitmap
-        var tempImage = Bitmap.createBitmap(
-            originalImage.width,
-            originalImage.height,
-            Bitmap.Config.ARGB_8888
-        )
+        val originalImage = (unsharpMaskingImage.drawable as BitmapDrawable).bitmap
+        var tempImage = originalImage.copy(originalImage.getConfig(), true) //Bitmap.createBitmap(originalImage.width, originalImage.height, Bitmap.Config.ARGB_8888)
 
         var amountUM : Double = amountText.text.toString().toDouble()
         var trash: Double = trashText.text.toString().toDouble()
@@ -34,11 +41,7 @@ class unsarpMasking : AppCompatActivity() {
 
 
         unsharpMaskingCancel.setOnClickListener {
-            var tempImage = Bitmap.createBitmap(
-                originalImage.width,
-                originalImage.height,
-                Bitmap.Config.ARGB_8888
-            )
+
             radius = 1
             amountUM = 0.0
             trash = 0.0
@@ -46,6 +49,7 @@ class unsarpMasking : AppCompatActivity() {
         }
         doUM.setOnClickListener {
             tempImage = gaussianBlur(tempImage!!, radius, trash, amountUM)
+            unsharpMaskingImage.setImageBitmap(tempImage)
         }
 
 
@@ -112,12 +116,23 @@ class unsarpMasking : AppCompatActivity() {
             }
         }
         return result
+
     }
+    fun bitmapToFile(bitmap:Bitmap): Uri {
+        val wrapper = ContextWrapper(applicationContext)
 
+        var file = wrapper.getDir("Images", Context.MODE_PRIVATE)
+        file = File(file,"${UUID.randomUUID()}.jpg")
 
+        try{
+            val stream: OutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream)
+            stream.flush()
+            stream.close()
+        }catch (e: IOException){
+            e.printStackTrace()
+        }
 
-
-
-
-
+        return Uri.parse(file.absolutePath)
+    }
 }

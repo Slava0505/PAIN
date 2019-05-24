@@ -33,6 +33,9 @@
     <string name="point_3">Point 3</string>
     <string name="start">RUN</string>
     <string name="original_image">Original Image</string>
+    <string name="radius">Radius</string>
+    <string name="trash">Trash</string>
+    <string name="amount">Amount</string>
     <string name="canvas">Canvas</string>
     <string-array name="euristics">
         <item>Euclidean</item>

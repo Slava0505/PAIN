@@ -54,6 +54,12 @@ class EditorActivity : AppCompatActivity() {
             retouch.data= this.intent.data
             startActivity(retouch)
         }
+        masking_button.setOnClickListener {
+            val masking= Intent(this, MaskingActivity::class.java)
+            masking.data= this.intent.data
+            startActivity(masking)
+        }
+
 //        resize_button.setOnClickListener {
 //            val resiz= Intent(this, ResizeActivity::class.java)
 //            resiz.data= this.intent.data
