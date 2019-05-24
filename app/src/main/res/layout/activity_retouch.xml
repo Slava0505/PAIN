@@ -25,7 +25,8 @@
             android:layout_height="wrap_content"
             android:inputType="number"
             android:ems="10"
-            android:id="@+id/radiusRetouchValue" app:layout_anchorGravity="bottom|center" app:layout_anchor="@+id/retouchImage"
-            android:text="radius"/>
+            android:id="@+id/radiusRetouchValue" app:layout_anchorGravity="bottom|center"
+            app:layout_anchor="@+id/retouchImage"
+            android:text="50"/>
 
 </android.support.design.widget.CoordinatorLayout>

@@ -49,6 +49,16 @@ class EditorActivity : AppCompatActivity() {
             resiz.data= this.intent.data
             startActivity(resiz)
         }
+        retouch_button.setOnClickListener {
+            val retouch= Intent(this, RetouchActivity::class.java)
+            retouch.data= this.intent.data
+            startActivity(retouch)
+        }
+//        resize_button.setOnClickListener {
+//            val resiz= Intent(this, ResizeActivity::class.java)
+//            resiz.data= this.intent.data
+//            startActivity(resiz)
+//        }
         gallery_button.setOnClickListener {
             pickPhotoFromGallery()
         }

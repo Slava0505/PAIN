@@ -30,11 +30,15 @@ class RetouchActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_retouch)
+        var cururi = intent.data
+        retouchImage.setImageURI(cururi)
+        fRetouch()
     }
 
+
     fun fRetouch(){
-        val originalImage = (image_cur_view.drawable as BitmapDrawable).bitmap
-        var tempImage = Bitmap.createBitmap(originalImage.width, originalImage.height, Bitmap.Config.ARGB_8888)
+        val originalImage = (retouchImage.drawable as BitmapDrawable).bitmap
+        var tempImage = originalImage.copy(originalImage.getConfig(), true) //Bitmap.createBitmap(originalImage.width, originalImage.height, Bitmap.Config.ARGB_8888)
         var radiusRetouch1 : Int = radiusRetouchValue.text.toString().toInt()
 
 
