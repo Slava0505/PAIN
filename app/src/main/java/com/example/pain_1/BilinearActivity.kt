@@ -1,16 +1,25 @@
 package com.example.pain_1
 
+import android.content.Context
+import android.content.ContextWrapper
+import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import codestart.info.kotlinphoto.R
 import kotlinx.android.synthetic.main.activity_bilinear.*
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
 import java.lang.Math.abs
 import java.lang.Math.random
+import java.util.*
 import kotlin.math.floor
 
 class BilinearActivity : AppCompatActivity() {
@@ -197,6 +206,19 @@ class BilinearActivity : AppCompatActivity() {
                 trinormal(canvasbmp)
                 imageCanvas.setImageBitmap(canvasbmp)
             }
+
+        buttonAccept.setOnClickListener {
+            cururi=bitmapToFile((imageCanvas.drawable as BitmapDrawable).bitmap)
+            val accept= Intent(this, EditorActivity::class.java)
+            accept.data=cururi
+            startActivity(accept)
+        }
+
+        buttonCancel.setOnClickListener {
+            val cancel= Intent(this, EditorActivity::class.java)
+            cancel.data=cururi
+            startActivity(cancel)
+        }
     }
 
     fun dis(
@@ -280,6 +302,24 @@ class BilinearActivity : AppCompatActivity() {
             abs(a3-apr)<abs(a4-apr) -> a3
             else -> a4
         }
+    }
+
+    fun bitmapToFile(bitmap:Bitmap): Uri {
+        val wrapper = ContextWrapper(applicationContext)
+
+        var file = wrapper.getDir("Images", Context.MODE_PRIVATE)
+        file = File(file,"${UUID.randomUUID()}.jpg")
+
+        try{
+            val stream: OutputStream = FileOutputStream(file)
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream)
+            stream.flush()
+            stream.close()
+        }catch (e: IOException){
+            e.printStackTrace()
+        }
+
+        return Uri.parse(file.absolutePath)
     }
 }
 
