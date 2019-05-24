@@ -13,32 +13,43 @@
             android:layout_height="0dp"
             android:id="@+id/image1" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
             app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
-            app:layout_constraintHorizontal_bias="0.488" android:layout_marginTop="24dp"
+            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="24dp"
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/todo" android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            android:scaleType="fitXY"            android:adjustViewBounds="true"/>
+            android:scaleType="fitXY" android:adjustViewBounds="true" app:layout_constraintVertical_bias="1.0"/>
 
-    <android.support.constraint.Guideline
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintGuide_begin="498dp" android:id="@+id/guideline3"/>
+
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" app:layout_constraintGuide_begin="592dp" android:id="@+id/guideline4"/>
     <Button
+            android:text="@string/accept"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_accept" android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="24dp" android:layout_marginBottom="8dp"/>
+    <Button
+            android:text="@string/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_cancel" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="24dp"/>
+    <Button
             android:text="@string/aGo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/buttonGoA" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+            android:id="@+id/buttonDo" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
             app:layout_constraintTop_toTopOf="@+id/guideline4"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintGuide_begin="374dp" android:id="@+id/guideline6"/>
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="540dp" android:id="@+id/guideline6"/>
 
 
 
