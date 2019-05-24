@@ -57,19 +57,21 @@ class SplinesActivity : AppCompatActivity() {
                 a.add(y.toFloat())
                 for (xi in x - imag.width / 100..x + imag.width / 100) {
                     for (yi in y - imag.height / 100..y + imag.height / 100) {
+                        var xI = xi
+                        var yI = yi
                         if (xi < 0) {
-                            val xi = 0
+                             xI = 0
                         }
                         if (yi < 0) {
-                            val yi = 0
+                             yI = 0
                         }
                         if (xi >= imag.width) {
-                            val xi = imag.width - 1
+                             xI = imag.width - 1
                         }
                         if (yi >= imag.height) {
-                            val yi = imag.height - 1
+                             yI = imag.height - 1
                         }
-                        imag.setPixel(xi, yi, Color.rgb(red, green, blue))
+                        imag.setPixel(xI, yI, Color.rgb(red, green, blue))
                     }
                 }
             }
@@ -109,74 +111,128 @@ class SplinesActivity : AppCompatActivity() {
         val d = FloatArray(n){ 0.toFloat() }
         val c = FloatArray(n+1){ 0.toFloat() }
 
-        val u = ArrayList<Float>()
+        val u = FloatArray(n){ 0.toFloat() }
 
-        val h = ArrayList<Float>()
-        val q = ArrayList<Float>()
+        val h = FloatArray(n){ 0.toFloat() }
+        val q = FloatArray(n){ 0.toFloat() }
 
-        val l = ArrayList<Float>()
-        val z = ArrayList<Float>()
+        val l = FloatArray(n+1){ 0.toFloat() }
+        val z = FloatArray(n+1){ 0.toFloat() }
 
         for (i in 0..n-1){
-            h.add(X[i+1]-X[i])
+            h[i] = (X[i+1]-X[i])
         }
-        q.add(0.toFloat())
         for (i in 1..n-1){
-            q.add(3*(a[i+1]-a[i])/h[i]-3*(a[i]-a[i-1])/h[i-1])
+            q[i] = ((3*(a[i+1]-a[i])/h[i]-3*(a[i]-a[i-1])/h[i-1]))
         }
 
-        l.add(1.toFloat())
-        u.add(0.toFloat())
-        z.add(0.toFloat())
+        l[0] = (1.toFloat())
+        u[0] = (0.toFloat())
+        z[0] = (0.toFloat())
         for (i in 1..n-1){
-            l.add(2*(X[i+1]-X[i-1])-h[i-1]*u[i-1])
-            u.add(h[i]/l[i])
-            z.add((q[i]-h[i-1]*z[i-1])/l[i])
+            l[i] = (2*(X[i+1]-X[i-1])-h[i-1]*u[i-1])
+            u[i] = (h[i]/l[i])
+            z[i] = ((q[i]-h[i-1]*z[i-1])/l[i])
         }
 
-        l.add(1.toFloat())
-        z.add(0.toFloat())
+        l[n] = (1.toFloat())
+        z[n] = (0.toFloat())
         c[n]=0.toFloat()
         for (i in n-1 downTo 0){
             c[i] = z[i] - u[i]*c[i+1]
             b[i] = (a[i+1]-a[i])/h[i] - h[i]*(c[i+1]+2*c[i])/3
             d[i] = (c[i+1]-c[i])/(3*h[i])
         }
+        println(a)
         println(b)
+        println(c)
+        println(d)
+
         val red = 255
         val green = 255
         val blue = 255
+        var prevS = a[0].toInt()
         for (i in 1..n){
             val xi = X[i]
-            for (x in X[i-1].toInt()..xi.toInt()){
-                val diff = (x-xi).toFloat()
-                var s = (a[i]+b[i-1]*diff+c[i-1]*diff*diff+d[i-1]*diff*diff*diff).toInt()
-                if (s < 0) {
-                    continue
-                }
-                if (s >= imag.height) {
-                    continue
-                }
+            val xi1 = X[i-1]
 
-                for (xi in x - imag.width / 300..x + imag.width / 300) {
-                    for (yi in s - imag.height / 300..s + imag.height / 300) {
-                        if (xi < 0) {
-                            continue
-                        }
-                        if (yi < 0) {
-                            continue
-                        }
-                        if (xi >= imag.width) {
-                            continue
-                        }
-                        if (yi >= imag.height) {
-                            continue
-                        }
-                        imag.setPixel(xi, yi, Color.rgb(red, green, blue))
+            if (xi>xi1){
+                for (x in xi1.toInt()..xi.toInt()){
+                    val diff = (x-xi1).toFloat()
+                    var s = (a[i-1]+b[i-1]*diff+c[i-1]*diff*diff+d[i-1]*diff*diff*diff).toInt()
+                    if (s < 0) {
+                        continue
                     }
-                }
-                imag.setPixel(x, s, Color.rgb(red, green, blue))
+                    if (s >= imag.height) {
+                        continue
+                    }
 
+                    for (xi in x - imag.width / 300..x + imag.width / 300) {
+                        var addDown = 0
+                        var addUp = 0
+                        if(prevS>s)  addDown =  prevS - s
+                        else addUp = s - prevS
+                        for (yi in s - addDown - imag.height / 300..s + addUp + imag.height / 300) {
+                            var finishY = yi
+                            if (xi < 0) {
+                                continue
+                            }
+                            if (yi < 0) {
+                                finishY = 0
+                            }
+                            if (xi >= imag.width) {
+                                continue
+                            }
+                            if (yi >= imag.height) {
+                                finishY = imag.height-1
+                            }
+
+                            imag.setPixel(xi, finishY, Color.rgb(red, green, blue))
+                        }
+                    }
+                    prevS = s
+                    imag.setPixel(x, s, Color.rgb(red, green, blue))
+
+                }
+            }
+            else{
+                for (x in xi1.toInt() downTo xi.toInt()){
+                    val diff = -(x-xi).toFloat()
+                    var s = (a[i]+b[i-1]*diff+c[i-1]*diff*diff+d[i-1]*diff*diff*diff).toInt()
+                    if (s < 0) {
+                        continue
+                    }
+                    if (s >= imag.height) {
+                        continue
+                    }
+
+                    for (xi in x - imag.width / 300..x + imag.width / 300) {
+                        var addDown = 0
+                        var addUp = 0
+                        if(prevS>s)  addDown =  prevS - s
+                        else addUp = s - prevS
+                        for (yi in s - addUp - imag.height / 300..s +  addDown+ imag.height / 300) {
+                            var finishY = yi
+                            if (xi < 0) {
+                                continue
+                            }
+                            if (yi < 0) {
+                                finishY = 0
+                            }
+                            if (xi >= imag.width) {
+                                continue
+                            }
+                            if (yi >= imag.height) {
+                                finishY = imag.height-1
+                            }
+
+                            imag.setPixel(xi, finishY, Color.rgb(red, green, blue))
+                        }
+                    }
+                    prevS = s
+                    imag.setPixel(x, s, Color.rgb(red, green, blue))
+
+                }
             }
         }
 
