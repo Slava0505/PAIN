@@ -29,7 +29,7 @@
     <string name="point_1">Point 1</string>
     <string name="point_2">Point 2</string>
     <string name="point_3">Point 3</string>
-    <string name="start">Do</string>
+    <string name="start">RUN</string>
     <string name="original_image">Original Image</string>
     <string name="canvas">Canvas</string>
     <string-array name="euristics">
