@@ -79,9 +79,9 @@ class FilterActivity : AppCompatActivity() {
             {
                 val pxcolor=orig.getPixel(i,t)
                 val alpha= Color.alpha(pxcolor)
-                var red= Color.red(pxcolor).div(256-normal(this.text_red.text.toString().toInt()))
-                var green= Color.green(pxcolor).div(256-normal(this.text_green.text.toString().toInt()))
-                var blue= Color.blue(pxcolor).div(256-normal(this.text_blue.text.toString().toInt()))
+                var red= Color.red(pxcolor).rem(256-normal(this.text_red.text.toString().toDouble().toInt()))
+                var green= Color.green(pxcolor).rem(256-normal(this.text_green.text.toString().toDouble().toInt()))
+                var blue= Color.blue(pxcolor).rem(256-normal(this.text_blue.text.toString().toDouble().toInt()))
                 if (red>255){
                     red=255
                 }
