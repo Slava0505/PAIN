@@ -2,16 +2,9 @@ package com.example.pain_1
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
-import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import android.widget.SeekBar
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.graphics.drawable.BitmapDrawable
-import codestart.info.kotlinphoto.R
-import codestart.info.kotlinphoto.R.*
 import codestart.info.kotlinphoto.R.layout.*
 import kotlinx.android.synthetic.main.activity_filter.*
 import kotlinx.android.synthetic.main.activity_unsarp_masking.*
@@ -101,21 +94,21 @@ class unsarpMasking : AppCompatActivity() {
                 }
 
                 // получаем итоговые цвета
-                var R = Math.max(0, Math.min(255, (sumR / sum).toInt()))
-                var G = Math.max(0, Math.min(255, (sumG / sum).toInt()))
-                var B = Math.max(0, Math.min(255, (sumB / sum).toInt()))
+                var red = Math.max(0, Math.min(255, (sumR / sum).toInt()))
+                var green = Math.max(0, Math.min(255, (sumG / sum).toInt()))
+                var blue = Math.max(0, Math.min(255, (sumB / sum).toInt()))
 
-                var diff = (R - Color.red(pixels[(x+1)+(y+1)*width]) + G - Color.green(pixels[(x+1)+(y+1)*width]) + B - Color.blue(pixels[(x+1)+(y+1)*width])) / 3
+                var diff = (red - Color.red(pixels[(x+1)+(y+1)*width]) + green - Color.green(pixels[(x+1)+(y+1)*width]) + blue - Color.blue(pixels[(x+1)+(y+1)*width])) / 3
 
                 if (Math.abs(2 * diff) > threshold) {
-                    R = Color.red(pixels[(x + 1) + (y + 1) * width]) + (diff * amount).toInt()
-                    G = Color.green(pixels[(x + 1) + (y + 1) * width]) + (diff * amount).toInt()
-                    B = Color.blue(pixels[(x + 1) + (y + 1) * width]) + (diff * amount).toInt()
-                    R = Math.max(0, Math.min(255, R))
-                    G = Math.max(0, Math.min(255, G))
-                    B = Math.max(0, Math.min(255, B))
+                    red = Color.red(pixels[(x + 1) + (y + 1) * width]) + (diff * amount).toInt()
+                    green = Color.green(pixels[(x + 1) + (y + 1) * width]) + (diff * amount).toInt()
+                    blue = Color.blue(pixels[(x + 1) + (y + 1) * width]) + (diff * amount).toInt()
+                    red = Math.max(0, Math.min(255, red))
+                    green = Math.max(0, Math.min(255, green))
+                    blue = Math.max(0, Math.min(255, blue))
                 }
-                result.setPixel(x + 1, y + 1, Color.argb(255, R, G, B))
+                result.setPixel(x + 1, y + 1, Color.argb(255, red, green, blue))
             }
         }
         return result
