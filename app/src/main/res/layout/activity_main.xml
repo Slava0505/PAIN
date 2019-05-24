@@ -6,7 +6,8 @@
                                              android:layout_height="match_parent"
                                              tools:context=".MainActivity"
                                              android:background="@color/colorBackground"
-                                             android:backgroundTint="#D4D0D0" android:foregroundTint="#D3CFCF">
+                                             android:backgroundTint="@color/colorBackground"
+                                             android:foregroundTint="@color/colorBackground">
 
     <Button
             android:layout_width="140dp"
@@ -40,7 +41,7 @@
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline" app:layout_constraintTop_toTopOf="parent"
             android:background="@drawable/ic_a" app:layout_constraintStart_toStartOf="@+id/guideline2"
-            android:layout_marginStart="8dp"/>
+            android:layout_marginStart="8dp" android:shadowColor="@color/colorBackground"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
