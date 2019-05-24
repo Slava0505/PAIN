@@ -112,4 +112,12 @@
             android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/buttonGenerate" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/buttonWall" android:entries="@array/ways_dims"/>
+    <CheckBox
+            android:text="@string/generate_look_zone"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:id="@+id/lookzoneBox" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/buttonGenerate" android:layout_marginTop="8dp"
+            app:layout_constraintTop_toBottomOf="@+id/space" app:layout_constraintEnd_toEndOf="@+id/buttonGenerate"
+            app:layout_constraintStart_toStartOf="@+id/buttonGenerate"/>
 </android.support.constraint.ConstraintLayout>

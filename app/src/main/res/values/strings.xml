@@ -51,4 +51,5 @@
     <string name="title_activity_splines">SplinesActivity</string>
     <string name="degrees">Degrees</string>
     <string name="apply">Apply</string>
+    <string name="generate_look_zone">Generate look zone</string>
 </resources>
