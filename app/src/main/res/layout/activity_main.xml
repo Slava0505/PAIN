@@ -6,7 +6,8 @@
                                              android:layout_height="match_parent"
                                              tools:context=".MainActivity"
                                              android:background="@color/colorBackground"
-                                             android:backgroundTint="#D4D0D0" android:foregroundTint="#D3CFCF">
+                                             android:backgroundTint="@color/colorBackground"
+                                             android:foregroundTint="@color/colorBackground">
 
     <Button
             android:layout_width="140dp"
@@ -31,8 +32,7 @@
     <android.support.constraint.Guideline
             android:orientation="vertical"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintGuide_begin="205dp" android:id="@+id/guideline2"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginBottom="731dp"/>
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="205dp" android:id="@+id/guideline2"/>
     <Button
             android:layout_width="140dp"
             android:layout_height="140dp"
@@ -40,25 +40,25 @@
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
             android:layout_marginTop="8dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline" app:layout_constraintTop_toTopOf="parent"
-            android:background="@drawable/ic_a" app:layout_constraintStart_toStartOf="@+id/guideline2"
-            android:layout_marginStart="8dp"/>
+            android:background="@drawable/astar" app:layout_constraintStart_toStartOf="@+id/guideline2"
+            android:layout_marginStart="8dp" android:shadowColor="@color/colorBackground"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintGuide_begin="374dp" android:id="@+id/guideline7"/>
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="379dp" android:id="@+id/guideline7"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintGuide_begin="252dp" android:id="@+id/guideline"/>
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="207dp" android:id="@+id/guideline"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintGuide_begin="606dp" android:id="@+id/guideline8"/>
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="525dp" android:id="@+id/guideline8"/>
     <ImageView
             android:layout_width="411dp"
             android:layout_height="81dp" app:srcCompat="@color/colorAccent"
             android:id="@+id/imageView"
-             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:background="#1D1984" app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
     <TextView

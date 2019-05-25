@@ -9,48 +9,57 @@
 
     <ImageView
             android:src="@android:color/black"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/image1" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="24dp"
-            app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="24dp"
-            app:layout_constraintHorizontal_bias="0.0" android:layout_marginTop="24dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:layout_width="308dp"
+            android:layout_height="341dp"
+            android:id="@+id/image1"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="@+id/guideline15"
             android:contentDescription="@string/todo" android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            android:scaleType="fitXY" android:adjustViewBounds="true" app:layout_constraintVertical_bias="1.0"/>
+            android:scaleType="fitXY" android:adjustViewBounds="true" app:layout_constraintVertical_bias="0.081"
+            android:layout_marginEnd="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginStart="8dp"
+            app:layout_constraintStart_toStartOf="parent"/>
 
 
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintGuide_begin="592dp" android:id="@+id/guideline4"/>
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="494dp" android:id="@+id/guideline4"/>
     <Button
             android:text="@string/accept"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_accept" android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
-            android:layout_marginEnd="24dp" android:layout_marginBottom="8dp"/>
+            android:id="@+id/button_accept"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline15" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp" android:background="@color/colorAccent" android:textStyle="bold"
+            android:textSize="18sp" android:textColor="@color/colorBackground"/>
     <Button
             android:text="@string/cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/button_cancel" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="24dp"/>
+            android:id="@+id/button_cancel"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline15" app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginStart="8dp" android:background="@color/colorAccent"
+            android:textColor="@color/colorBackground" android:textSize="18sp" android:textStyle="bold"/>
     <Button
-            android:text="@string/aGo"
+            android:text="@string/start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttonDo" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
             app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="@+id/guideline4"/>
+            app:layout_constraintTop_toTopOf="@+id/guideline4" android:background="@color/colorAccent"
+            android:textColor="@color/colorBackground" android:textStyle="bold" android:textSize="18sp"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintGuide_begin="540dp" android:id="@+id/guideline6"/>
-
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="574dp" android:id="@+id/guideline6"/>
+    <android.support.constraint.Guideline
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="60dp" android:id="@+id/guideline15"/>
 
 
 </android.support.constraint.ConstraintLayout>

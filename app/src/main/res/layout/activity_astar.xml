@@ -17,7 +17,7 @@
             app:layout_constraintTop_toTopOf="parent"
             android:contentDescription="@string/todo" android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toTopOf="@+id/guideline6"
-            android:scaleType="fitXY"            android:adjustViewBounds="true"/>
+            android:scaleType="fitXY" android:adjustViewBounds="true"/>
     <Button
             android:text="@string/aStart"
             android:layout_width="wrap_content"
@@ -26,7 +26,9 @@
             app:layout_constraintTop_toTopOf="@+id/guideline3" android:layout_marginBottom="8dp"
             app:layout_constraintEnd_toStartOf="@+id/buttonFinish"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintBottom_toTopOf="@+id/guideline4"/>
+            android:layout_marginStart="8dp" app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            android:background="@color/colorAccent" android:textStyle="bold" android:textSize="18sp"
+            android:textColor="@color/colorBackground"/>
     <Button
             android:text="@string/aFinish"
             android:layout_width="wrap_content"
@@ -35,7 +37,10 @@
             app:layout_constraintTop_toTopOf="@+id/guideline3" android:layout_marginBottom="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_marginEnd="8dp" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginStart="8dp" app:layout_constraintBottom_toTopOf="@+id/guideline4"/>
+            android:layout_marginStart="8dp" app:layout_constraintBottom_toTopOf="@+id/guideline4"
+            android:background="@color/colorAccent" android:textSize="18sp" android:textColor="@color/colorBackground"
+            android:textStyle="bold" app:layout_constraintHorizontal_bias="0.542"
+            app:layout_constraintVertical_bias="0.489"/>
     <Button
             android:text="@string/aWall"
             android:layout_width="wrap_content"
@@ -44,23 +49,28 @@
             app:layout_constraintTop_toTopOf="@+id/guideline3" android:layout_marginBottom="8dp"
             app:layout_constraintStart_toEndOf="@+id/buttonFinish"
             android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline4"/>
+            app:layout_constraintBottom_toTopOf="@+id/guideline4" android:background="@color/colorAccent"
+            android:textColor="@color/colorBackground" android:textSize="18sp" android:textStyle="bold"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintGuide_begin="498dp" android:id="@+id/guideline3"/>
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="472dp" android:id="@+id/guideline3"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" app:layout_constraintGuide_begin="592dp" android:id="@+id/guideline4"/>
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="585dp" android:id="@+id/guideline4"/>
     <Button
-            android:text="@string/aGo"
+            android:text="@string/start"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/buttonGoA" app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="@+id/guideline4"/>
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintTop_toTopOf="@+id/guideline4" app:layout_constraintHorizontal_bias="0.498"
+            android:textSize="18sp"
+            android:textColor="@color/colorBackground" android:textStyle="bold"
+            android:background="@color/colorAccent" android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline9"/>
     <android.support.constraint.Guideline
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -72,29 +82,10 @@
             android:id="@+id/buttonGenerate" app:layout_constraintStart_toStartOf="parent"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp" app:layout_constraintBottom_toTopOf="@+id/guideline3"
-            app:layout_constraintTop_toTopOf="@+id/guideline6" app:layout_constraintEnd_toStartOf="@+id/text_wight"
-            android:layout_marginEnd="8dp"/>
-    <EditText
-            android:layout_width="79dp"
-            android:layout_height="39dp"
-            android:inputType="textPersonName"
-            android:text="100"
-            android:ems="10"
-            android:id="@+id/text_height" android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="@+id/guideline6" android:textSize="18sp"
-            android:importantForAutofill="no"/>
-    <EditText
-            android:layout_width="88dp"
-            android:layout_height="40dp"
-            android:inputType="textPersonName"
-            android:text="100"
-            android:ems="10"
-            android:id="@+id/text_wight" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/guideline3" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toTopOf="@+id/guideline6" android:layout_marginEnd="24dp"
-            app:layout_constraintEnd_toStartOf="@+id/text_height"/>
+            app:layout_constraintTop_toTopOf="@+id/guideline6"
+            app:layout_constraintEnd_toStartOf="@+id/text_wight" android:layout_marginEnd="8dp"
+            android:textSize="16sp" android:textColor="@color/colorBackground" android:textStyle="bold"
+            android:background="@color/colorAccent"/>
     <Spinner
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -102,22 +93,45 @@
             app:layout_constraintTop_toBottomOf="@+id/buttonGenerate" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/buttonStart"
             app:layout_constraintStart_toStartOf="@+id/buttonStart" android:layout_marginStart="8dp"
-            app:layout_constraintEnd_toStartOf="@+id/text_wight" android:layout_marginEnd="8dp"
-            android:spinnerMode="dropdown" android:entries="@array/euristics"/>
+            android:spinnerMode="dropdown" android:entries="@array/euristics" android:layout_marginEnd="8dp"
+            app:layout_constraintEnd_toStartOf="@+id/text_wight"/>
     <Spinner
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:id="@+id/transitionchoice" app:layout_constraintStart_toStartOf="@+id/text_wight"
-            android:layout_marginStart="8dp" app:layout_constraintEnd_toEndOf="@+id/buttonWall"
+            android:id="@+id/transitionchoice"
+            app:layout_constraintEnd_toEndOf="@+id/buttonWall"
             android:layout_marginEnd="8dp" android:layout_marginTop="8dp"
             app:layout_constraintTop_toBottomOf="@+id/buttonGenerate" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonWall" android:entries="@array/ways_dims"/>
+            app:layout_constraintBottom_toTopOf="@+id/buttonWall" android:entries="@array/ways_dims"
+            app:layout_constraintStart_toStartOf="@+id/text_wight" android:layout_marginStart="8dp"/>
+    <EditText
+            android:layout_width="88dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/text_height" app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginEnd="8dp"
+            android:text="100" android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="@+id/guideline6"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/guideline3"/>
+    <EditText
+            android:layout_width="88dp"
+            android:layout_height="40dp"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:id="@+id/text_wight"
+            app:layout_constraintEnd_toStartOf="@+id/text_height" android:layout_marginEnd="8dp"
+            android:layout_marginTop="8dp" app:layout_constraintTop_toTopOf="@+id/guideline6"
+            android:layout_marginBottom="8dp" app:layout_constraintBottom_toTopOf="@+id/guideline3" android:text="100"/>
     <CheckBox
-            android:text="@string/generate_look_zone"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:id="@+id/lookzoneBox" android:layout_marginBottom="8dp"
+            android:text="Zone Locked"
+            android:layout_width="137dp"
+            android:layout_height="33dp"
+            android:id="@+id/lookZoneBox" app:layout_constraintStart_toStartOf="@+id/buttonGenerate"
+            app:layout_constraintEnd_toEndOf="@+id/buttonGenerate" android:layout_marginBottom="8dp"
             app:layout_constraintBottom_toTopOf="@+id/buttonGenerate" android:layout_marginTop="8dp"
-            app:layout_constraintTop_toBottomOf="@+id/space" app:layout_constraintEnd_toEndOf="@+id/buttonGenerate"
-            app:layout_constraintStart_toStartOf="@+id/buttonGenerate"/>
+            app:layout_constraintTop_toBottomOf="@+id/space"/>
+    <android.support.constraint.Guideline
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" app:layout_constraintGuide_begin="585dp" android:id="@+id/guideline9"/>
 </android.support.constraint.ConstraintLayout>

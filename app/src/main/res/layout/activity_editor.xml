@@ -114,4 +114,12 @@
             </LinearLayout>
         </HorizontalScrollView>
     </ScrollView>
+    <Button
+            android:text="@string/save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" tools:layout_editor_absoluteY="123dp"
+            android:id="@+id/save"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
+            android:background="@color/colorAccent" android:textStyle="bold" android:textSize="18sp"
+            android:textColor="@color/colorBackground"/>
 </android.support.constraint.ConstraintLayout>

@@ -131,7 +131,7 @@ class AStarActivity : AppCompatActivity() {
                 {
                     when {
                         arrTmp[i*imag.height+t]==1 -> imag.setPixel(i,t,Color.rgb(255,255, 255))
-                        (arrTmp[i*imag.height+t]==2)and(lookzoneBox.isChecked) -> imag.setPixel(i,t,Color.rgb(255,255, 0))
+                        (arrTmp[i*imag.height+t]==2)and(lookZoneBox.isChecked) -> imag.setPixel(i,t,Color.rgb(255,255, 0))
                         arrTmp[i*imag.height+t]==3 -> imag.setPixel(i,t,Color.rgb(0,200, 0))
                         else -> imag.setPixel(i,t,Color.rgb(0,0,0))
                     }

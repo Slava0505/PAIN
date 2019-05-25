@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">EditByPAIN</string>
+    <string name="app_name">PAIN-Editor</string>
     <string name="buttonForCamera">Camera</string>
     <string name="buttonForGallery">Gallery</string>
     <string name="buttonForA">A*</string>
@@ -22,6 +22,8 @@
     <string name="green">Green</string>
     <string name="blue">Blue</string>
     <string name="number0">0</string>
+    <string name="number100">100</string>
+    <string name="coefficient">Coefficient</string>
     <string name="right">Right</string>
     <string name="left">Left</string>
     <string name="imageveiw">ImageVeiw</string>
@@ -37,6 +39,7 @@
     <string name="trash">Trash</string>
     <string name="amount">Amount</string>
     <string name="canvas">Canvas</string>
+    <string name="save">Save</string>
     <string-array name="euristics">
         <item>Euclidean</item>
         <item>Manhattan</item>

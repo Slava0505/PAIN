@@ -8,8 +8,19 @@ import codestart.info.kotlinphoto.R
 import kotlinx.android.synthetic.main.activity_editor.*
 import kotlinx.android.synthetic.main.activity_main.*
 import android.app.Activity
+import android.content.Context
+import android.content.ContextWrapper
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.provider.MediaStore
+import android.support.v4.content.ContextCompat
+import android.widget.Toast
 import codestart.info.kotlinphoto.AppConstants
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import java.io.OutputStream
+import java.util.*
 
 class EditorActivity : AppCompatActivity() {
     var fileUri: Uri? = null
@@ -68,6 +79,52 @@ class EditorActivity : AppCompatActivity() {
         gallery_button.setOnClickListener {
             pickPhotoFromGallery()
         }
+        save.setOnClickListener {
+            // Save the image in internal storage and get the uri
+            val uri:Uri = saveImageToInternalStorage(R.drawable.lenna)
+            Toast.makeText(this, "saved", Toast.LENGTH_SHORT).show()
+
+        }
+    }
+
+
+    // Method to save an image to internal storage
+    private fun saveImageToInternalStorage(drawableId:Int):Uri{
+        // Get the image from drawable resource as drawable object
+        val drawable = ContextCompat.getDrawable(applicationContext,drawableId)
+
+        // Get the bitmap from drawable object
+        val bitmap = (drawable as BitmapDrawable).bitmap
+
+        // Get the context wrapper instance
+        val wrapper = ContextWrapper(applicationContext)
+
+        // Initializing a new file
+        // The bellow line return a directory in internal storage
+        var file = wrapper.getDir("images", Context.MODE_PRIVATE)
+
+
+        // Create a file to save the image
+        file = File(file, "${UUID.randomUUID()}.jpg")
+
+        try {
+            // Get the file output stream
+            val stream: OutputStream = FileOutputStream(file)
+
+            // Compress bitmap
+            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, stream)
+
+            // Flush the stream
+            stream.flush()
+
+            // Close stream
+            stream.close()
+        } catch (e: IOException){ // Catch the exception
+            e.printStackTrace()
+        }
+
+        // Return the saved image uri
+        return Uri.parse(file.absolutePath)
     }
 
     fun pickPhotoFromGallery() {
